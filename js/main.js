@@ -48,8 +48,7 @@
     p_1946_80: {
       label: "1946–1980 (combined)",
       counts: ["n_1946_60", "n_1961_70", "n_1971_80"]
-    },
-    p_notstated: { label: "Period not stated", count: null }
+    }
   };
 
   var CHAPTERS = {
@@ -639,7 +638,6 @@
     var properties = feature.properties || {};
     var epoch = EPOCHS[activeEpoch];
     var share = Number(properties[activeEpoch]);
-    if (activeEpoch === "p_notstated") share = 0;
     var count = getEpochCount(properties, epoch);
     var total = Number(properties.total);
 
