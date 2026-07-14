@@ -121,12 +121,14 @@ a:hover {
   font-size: 1.22rem;
   line-height: 1.55;
   color: var(--ink-2);
+  max-width: 58ch;
 }
 
 .hero-credit {
   margin: 0;
   font-size: 0.8rem;
   color: var(--ink-3);
+  max-width: 65ch;
 }
 
 .hero-scrollcue {
@@ -187,17 +189,19 @@ a:hover {
 .scrolly__placeholder-note {
   position: absolute;
   right: 1rem;
-  bottom: 0.75rem;
+  top: 1rem;
   z-index: 6;
   margin: 0;
   font-size: 0.72rem;
-  color: var(--ink-3);
+  /* ink-2, not ink-3: this text sits on map tints where ink-3 falls under 4.5:1 */
+  color: var(--ink-2);
 }
 
-/* Chapter chip (was the debug label) */
+/* Chapter chip (was the debug label); bottom-right so the card rail never
+   paints over it (the steps column stacks above the sticky map wrap) */
 .scrolly__chip {
   position: absolute;
-  left: 1rem;
+  right: 1rem;
   bottom: 0.75rem;
   z-index: 10;
   padding: 0.45em 0.75em;
@@ -225,6 +229,8 @@ a:hover {
   display: flex;
   align-items: center;
   pointer-events: none;
+  /* keeps consecutive taller-than-viewport cards from touching */
+  padding: 3rem 0;
 }
 
 .step.prose {
@@ -290,7 +296,7 @@ a:hover {
 }
 
 #sources p {
-  max-width: 46rem;
+  max-width: 65ch;
   margin: 0 0 1rem;
 }
 
