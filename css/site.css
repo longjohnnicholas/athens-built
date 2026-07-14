@@ -1,0 +1,94 @@
+/* Stage 2 scaffold: layout only, no aesthetic styling. Design system arrives in a later stage. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Skip link: visually hidden until focused */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+  padding: 0.5em 1em;
+}
+
+header,
+footer,
+#sources {
+  padding: 1em;
+}
+
+.scrolly {
+  position: relative;
+}
+
+.scrolly__map-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.scrolly__map {
+  width: 100%;
+  height: 100%;
+}
+
+.scrolly__debug-label {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  z-index: 10;
+  padding: 0.25em 0.5em;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.scrolly__steps {
+  position: relative;
+  margin-top: -100vh;
+  pointer-events: none;
+}
+
+.step {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.step .prose,
+.step.prose {
+  pointer-events: auto;
+  max-width: 32em;
+  margin: 0 1em;
+  padding: 1em;
+  background: #fff;
+}
+
+/* Mobile fallback: stack text, hide the sticky map per PLAN.md §5
+   (static pre-rendered images are the intended progressive-enhancement
+   fallback; this scaffold just hides the live map for now). */
+@media (max-width: 700px) {
+  .scrolly__map-wrap {
+    display: none;
+  }
+
+  .scrolly__steps {
+    margin-top: 0;
+  }
+
+  .step {
+    min-height: auto;
+    display: block;
+  }
+}
