@@ -467,7 +467,8 @@ a:hover {
 
 .data-lockup {
   display: grid;
-  grid-template-columns: 7rem 1fr;
+  /* wide enough that "2 in 3" sets on one line at 3.75rem */
+  grid-template-columns: 9.5rem 1fr;
   align-items: center;
   gap: 1rem;
   margin: 0 0 1rem;
