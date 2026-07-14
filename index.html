@@ -42,7 +42,6 @@
         <div id="legend-breaks" class="map-legend__breaks" aria-hidden="true"><span>0</span><span>5</span><span>15</span><span>25</span><span>35</span><span>50%+</span></div>
         <p id="legend-description" class="map-legend__description">Share of buildings standing at the 2021 census</p>
       </section>
-      <p id="map-status" class="map-status" role="status" hidden></p>
       <form id="map-controls" class="map-controls" aria-label="Explore map controls" hidden>
         <label for="epoch-select">Built in:</label>
         <select id="epoch-select" name="epoch">
@@ -61,11 +60,14 @@
           <option value="p_2016_21">2016–2021</option>
           <option value="p_undercons">Under construction</option>
           <option value="p_1946_80" selected>1946–1980 (combined)</option>
+          <option value="p_notstated">Period not stated</option>
         </select>
         <fieldset>
           <legend>Layer</legend>
           <label><input type="radio" name="layer" value="census" checked> Census</label>
+          <label><input type="radio" name="layer" value="heights"> Heights</label>
           <label><input type="radio" name="layer" value="satellite"> Satellite</label>
+          <label><input type="radio" name="layer" value="green"> Green</label>
           <label><input type="radio" name="layer" value="footprints"> Footprints only</label>
         </fieldset>
       </form>
@@ -208,6 +210,7 @@
         <p class="chapter-folio"><span>09 / 10</span><span>1946–1980</span></p>
         <h2>The verdict</h2>
         <p>This is the view we opened with, now with the construction dates showing. The sameness has an explanation. A 1929 law made it possible to own a building floor by floor. Two financing channels, the <i class="loanword" lang="el-Latn">antiparochi</i> swap and family self-building, turned that possibility into some 35,000 apartment blocks in three decades, plot by plot, with banks nearly absent. And the state, which elsewhere in postwar Europe built social housing at scale, in Greece built almost none. Public construction stayed near 3 percent of housing output by one estimate, and the 2021 census records 0.0 percent of the Greek housing stock as social rental, against a fifth to a third in Denmark, Austria or the Netherlands. Scholars describe the system as the substitute for a welfare state: the family plot, the contractor’s deal and the tax-free swap did the work that public housing programs did elsewhere. The result was one building type, repeated wherever a plot and a deal could be found. Of the buildings standing in the Municipality of Athens today, two in three came out of those years.</p>
+        <div class="data-lockup" aria-label="Headline floors and construction-period finding"><strong>2 in 3</strong><span>of the buildings in the Municipality of Athens with three or more upper floors were built between 1946 and 1980. ELSTAT 2021 Buildings Census, Table 07A.</span></div>
         <aside class="sources"><span class="sources__label">9 / Sources</span><p>Allen, Barlow, Leal, Maloutas &amp; Padovani 2004; Emmanuel 2015; Housing Europe 2025 / Eurostat; ELSTAT 2021 Buildings Census.</p></aside>
         </div>
       </section>
@@ -216,7 +219,7 @@
         <div class="card">
         <p class="chapter-folio"><span>10 / 10</span><span>Explore</span></p>
         <h2>Explore</h2>
-        <p>The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. Zoom in and today’s building footprints appear above the colors; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth layer can be switched on from the panel; the green-space layer remains unavailable while its Urban Atlas licence is checked. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the <a href="#sources">sources and methods page</a> below.</p>
+        <p>The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. Zoom in and today’s building footprints appear above the colors; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth, green-space and building-height layers switch on from the panel, each labelled with its date and limits. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the <a href="#sources">sources and methods page</a> below.</p>
         <aside class="sources"><span class="sources__label">10 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.</p></aside>
         </div>
       </section>
@@ -229,7 +232,7 @@
     <h2>Sources and methods</h2>
     <p>Sources sit under each chapter, alongside a plain statement of what each dataset can and cannot show.</p>
     <p>Two rules hold everywhere on this site. Census colors always describe the stock standing at the 2021 census, never everything ever built. And no individual building on the map carries a construction date, because Greece publishes none.</p>
-    <p>The basemap is © OpenStreetMap contributors, served by OpenFreeMap; census shares are computed from ELSTAT 2021 Buildings Census Table 6 joined to official municipal boundaries (Ministry of Environment and Energy, CC BY 4.0).</p>
+    <p>The basemap is © OpenStreetMap contributors, served by OpenFreeMap; census shares are computed from ELSTAT 2021 Buildings Census Table 6 joined to official municipal boundaries (Ministry of Environment and Energy, CC BY 4.0). Urban Atlas 2018 and Building Height 2012 © European Union, Copernicus Land Monitoring Service.</p>
   </section>
 
 </main>
@@ -238,7 +241,7 @@
   <div class="footer-grid">
     <p class="footer-label">Colophon</p>
     <p><strong>Text and diagrams</strong><br>CC BY-NC 4.0</p>
-    <p><strong>Data and maps</strong><br>OSM ODbL via OpenFreeMap; ELSTAT; Copernicus/JRC GHSL; ΥΠΕΝ boundaries CC BY 4.0</p>
+    <p><strong>Data and maps</strong><br>OSM ODbL via OpenFreeMap; ELSTAT; Copernicus/JRC GHSL; ΥΠΕΝ boundaries CC BY 4.0; Urban Atlas 2018 and Building Height 2012 © European Union, Copernicus Land Monitoring Service</p>
     <p><strong>Code and licences</strong><br>MIT, README</p>
   </div>
 </footer>
@@ -246,6 +249,7 @@
 <script src="vendor/maplibre-gl.js"></script>
 <script src="vendor/pmtiles.js"></script>
 <script src="vendor/scrollama.min.js"></script>
+<script src="js/data-layers.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

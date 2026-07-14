@@ -1,0 +1,8 @@
+# U1 + U3 integration decisions — 2026-07-14
+
+- Provenance copies are stored outside the repository at `/Users/ntsivanidis/Desktop/athens-website-plan/downloads/`. SHA-256: LCU `c65910eec87726bfc764b5cf48299da51c0627222cca29de4e7614a3c5778a0c`; STL `d96619208383931f79c1afb0515d3f2d0899dbf59debfbe1cea661905846b7fc`; DHM `54a9f840dbbb5ef502b3dd0025ceae4854f1b4630ad981fcd9afb2f5e1dea757`.
+- Census fills and tooltips use the 150-feature community file. The 66-feature municipality file remains loaded only for the stronger municipality outlines and the chapter-3 municipality highlight.
+- `green_areas.geojson` dissolves the 1,697 Urban Atlas class-14100 polygons after clipping and uses a topology-preserving 3 m simplification. This retains the class extent while staying below the web payload cap.
+- Height-band interval decisions are `0 < h ≤ 3`, `3 < h ≤ 9`, `9 < h ≤ 15`, `15 < h ≤ 21`, and `h > 21` metres. The same lower-open, upper-closed convention is used by the regenerated 3 m histogram bins.
+- The native 10 m EPSG:3035 DHM is reprojected with nearest-neighbour sampling into a transparent RGBA EPSG:4326 PNG capped at 4,096 px wide. The raster layer switches MapLibre layout visibility instead of repeatedly opacity-transitioning; this avoids a Metal compositor fault observed after repeated hide/show cycles. The source raster, rather than the display resampling, remains the basis of the histogram and transect.
+- The Street Tree Layer contains canopy polygons, not individual-tree points. The optional web texture uses one representative point per canopy polygon, rounded to five decimal places and collected in one MultiPoint feature. It must not be interpreted as an individual-tree count.

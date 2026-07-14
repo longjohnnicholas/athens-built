@@ -6,7 +6,7 @@
 
 ## 1. The sameness
 
-**Map state:** full-bleed present-day view, neutral footprints, no epoch layer; camera over the central basin.
+**Map state:** full-bleed 2012 Urban Atlas building-height carpet; camera settles over the central basin.
 
 Stand on a street corner anywhere in the Athens basin and look up. The same building looks back: a concrete frame of five, six, seven storeys, balconies running the width of the facade, the top floors stepping back against the sky. Ride a bus from Patisia to Kallithea to Peristeri and the type repeats, with small variations, for an hour in any direction. Athens is among the oldest cities in Europe, and almost nothing standing in it is old. Of the buildings standing in the Municipality of Athens at the 2021 census, two in three were built between 1946 and 1980. Below, we tell the story of how a small neoclassical capital, swollen first by refugees and then by villagers, rebuilt itself block by block into the concrete city on your screen, without a master plan, with almost no bank credit, and with barely any state construction.
 
@@ -54,7 +54,7 @@ The boom did not only fill empty land. In the center it replaced a city that was
 
 ## 7. Where the parks went
 
-**Map state:** plain ground; the on-screen status notes that the green-space layer is pending the Urban Atlas licence check.
+**Map state:** Urban Atlas 2018 Green urban areas, with the Street Tree Layer as supporting texture.
 
 The mechanism that rebuilt the housing also explains the missing parks. From the 1833 plan onward, every scheme that reserved Athenian land for public space met the same obstacle. The land was already owned in small plots, and expropriation failed or was cut back. When the postwar boom came, redevelopment happened one plot at a time, and a process that never assembled land beyond a single building site had no instrument for producing a park. We can measure the deficit today. In a 2026 study ranking 862 European cities on green access, Athens sits near the bottom: 3.3 percent of its residents have three visible trees from home, 30 percent tree canopy in their neighborhood, and a green space within 300 meters, the benchmark the study applies. Tree cover in Athens runs around a third of the average for EU capitals. The green Athenians do have lies mostly at the edges of the map, on Parnitha, Hymettus and Penteli and along the coast, rather than inside the fabric. The mountains and the coast serve as the city's green reserve; the basin itself holds almost none.
 
@@ -70,17 +70,19 @@ By 1980 the basin was filling up and growth moved to the edges. The satellite re
 
 ## 9. The verdict
 
-**Map state:** return to the opening camera, epoch layer on, fixed cross-epoch scale.
+**Map state:** return to the opening camera; first half shows the 1946–1980 community choropleth, second half the 2012 building-height carpet.
 
 This is the view we opened with, now with the construction dates showing. The sameness has an explanation. A 1929 law made it possible to own a building floor by floor. Two financing channels, the antiparochi swap and family self-building, turned that possibility into some 35,000 apartment blocks in three decades, plot by plot, with banks nearly absent. And the state, which elsewhere in postwar Europe built social housing at scale, in Greece built almost none. Public construction stayed near 3 percent of housing output by one estimate, and the 2021 census records 0.0 percent of the Greek housing stock as social rental, against a fifth to a third in Denmark, Austria or the Netherlands. Scholars describe the system as the substitute for a welfare state: the family plot, the contractor's deal and the tax-free swap did the work that public housing programs did elsewhere. The result was one building type, repeated wherever a plot and a deal could be found. Of the buildings standing in the Municipality of Athens today, two in three came out of those years.
+
+    2 in 3 — of the buildings in the Municipality of Athens with three or more upper floors were built between 1946 and 1980. ELSTAT 2021 Buildings Census, Table 07A.
 
 *Sources: Allen, Barlow, Leal, Maloutas & Padovani 2004; Emmanuel 2015; Housing Europe 2025 / Eurostat; ELSTAT 2021 Buildings Census.*
 
 ## 10. Explore
 
-**Map state:** free camera; epoch dropdown active; layer switcher (census, GHSL, footprints only); green space remains unavailable pending the Urban Atlas licence check.
+**Map state:** free camera; epoch dropdown active for Census only; layer switcher (Census, Heights, Satellite, Green, Footprints only).
 
-The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. Zoom in and today's building footprints appear above the colors; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth layer can be switched on from the panel; the green-space layer remains unavailable while its Urban Atlas licence is checked. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the sources and methods page linked below.
+The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. Zoom in and today's building footprints appear above the colors; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth, green-space and building-height layers switch on from the panel, each labelled with its date and limits. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the sources and methods page linked below.
 
 *Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.*
 

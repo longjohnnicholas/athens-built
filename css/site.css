@@ -217,7 +217,6 @@ a:hover {
 
 .map-legend,
 .map-controls,
-.map-status,
 .map-tooltip,
 .map-attribution {
   position: absolute;
@@ -241,6 +240,15 @@ a:hover {
 .map-legend__title,
 .map-legend__description {
   margin: 0;
+}
+
+.map-legend[data-layer="heights"] {
+  width: min(30rem, calc(100vw - 7rem));
+}
+
+.map-legend[data-layer="heights"] .map-legend__breaks span {
+  white-space: pre-line;
+  text-align: center;
 }
 
 .map-legend__title {
@@ -318,6 +326,11 @@ a:hover {
   text-transform: none;
 }
 
+.map-controls select:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
 .map-controls fieldset {
   margin: 0.85rem 0 0;
   padding: 0.55rem 0 0;
@@ -341,15 +354,6 @@ a:hover {
   height: 1rem;
   margin: 0;
   accent-color: var(--accent);
-}
-
-.map-status {
-  top: 3.5rem;
-  right: 3.5rem;
-  max-width: 19rem;
-  padding: 0.75rem 0.85rem;
-  font-size: 0.72rem;
-  line-height: 1.4;
 }
 
 .map-tooltip {
@@ -622,13 +626,16 @@ footer {
     --card-width: 24rem;
   }
 
-  .map-controls,
-  .map-status {
+  .map-controls {
     right: 1.5rem;
   }
 
   .map-legend {
     left: calc(var(--rail-margin) + 25.5rem);
+    width: calc(100vw - var(--rail-margin) - 27rem);
+  }
+
+  .map-legend[data-layer="heights"] {
     width: calc(100vw - var(--rail-margin) - 27rem);
   }
 }

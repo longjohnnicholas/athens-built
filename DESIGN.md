@@ -68,6 +68,10 @@ Fill `#7A9367` at 60% over map ground, boundary `#4F7A3D` at 0.5px. Class filter
 
 **Chapter highlight strokes:** refugee quarters (ch 3): `--accent-2` 2px outline, `--accent-2` 12% fill, Commissioner SemiBold 11px labels. Plaka (ch 6): `--ink` 1.5px solid outline, no fill, one label.
 
+### Addendum — building-height layer (2026-07-14)
+
+The building-height carpet uses the validated sequential slate ramp `#DEE3E7 → #B8C2CA → #8FA0AC → #64798A → #3C4F60` at breaks 0–3 / 3–9 / 9–15 / 15–21 / 21+ m. It is served as a transparent, georeferenced PNG image overlay rather than vector cells; zero and no-data cells are transparent. The source is the Urban Atlas 2012 DHM at 10 m resolution, so the 2012 reference date and its caveat remain visible whenever the layer is on.
+
 ## 3. Typography
 
 | Role | Face | Size / weight |

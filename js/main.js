@@ -18,6 +18,7 @@
   ];
   var GHSL_RAMP = ["#DDDAD4", "#BBB7AF", "#736F66", "#4A463F"];
   var GHSL_YEARS = [1975, 1990, 2005, 2020];
+  var HEIGHT_RAMP = ["#DEE3E7", "#B8C2CA", "#8FA0AC", "#64798A", "#3C4F60"];
   var MAX_BOUNDS = [
     [23.2, 37.6],
     [24.3, 38.4]
@@ -44,7 +45,11 @@
     p_2011_15: { label: "2011–2015", count: "n_2011_15" },
     p_2016_21: { label: "2016–2021", count: "n_2016_21" },
     p_undercons: { label: "Under construction", count: "n_undercons" },
-    p_1946_80: { label: "1946–1980 (combined)", count: null }
+    p_1946_80: {
+      label: "1946–1980 (combined)",
+      counts: ["n_1946_60", "n_1961_70", "n_1971_80"]
+    },
+    p_notstated: { label: "Period not stated", count: null }
   };
 
   var CHAPTERS = {
@@ -52,7 +57,7 @@
       chip: "01 / 10 · Athens today",
       center: [23.735, 37.99],
       zoom: 10.4,
-      layer: "footprints"
+      layer: "heights"
     },
     "2": {
       chip: "02 / 10 · 1833–1920",
@@ -91,7 +96,7 @@
       chip: "07 / 10 · 1833 onward",
       center: [23.75, 38.0],
       zoom: 10.2,
-      layer: "footprints"
+      layer: "green"
     },
     "8": {
       chip: "08 / 10 · 1980–2008",
@@ -124,7 +129,6 @@
   var legendSwatches = document.getElementById("legend-swatches");
   var legendBreaks = document.getElementById("legend-breaks");
   var legendDescription = document.getElementById("legend-description");
-  var mapStatus = document.getElementById("map-status");
   var controls = document.getElementById("map-controls");
   var epochSelect = document.getElementById("epoch-select");
   var tooltip = document.getElementById("map-tooltip");
@@ -134,7 +138,7 @@
   var dataReady = false;
   var dataPromise = null;
   var currentChapter = "1";
-  var chapterProgress = { "5": 0, "8": 0 };
+  var chapterProgress = { "5": 0, "8": 0, "9": 0 };
   var activeMapLayer = "footprints";
   var activeEpoch = "p_1946_80";
   var activeGhslStop = 2020;
@@ -179,9 +183,13 @@
   function loadMapData() {
     if (!dataPromise) {
       dataPromise = Promise.all([
+        fetchGeoJSON("data/community_epochs.geojson"),
         fetchGeoJSON("data/municipal_epochs.geojson"),
         fetchGeoJSON("data/attica_outline.geojson"),
-        fetchGeoJSON("data/ghsl_bands.geojson")
+        fetchGeoJSON("data/ghsl_bands.geojson"),
+        fetchGeoJSON("data/green_areas.geojson"),
+        fetchGeoJSON("data/heights_10m_bounds.json"),
+        fetchGeoJSON("data/street_trees.geojson")
       ]);
     }
     return dataPromise;
@@ -207,137 +215,6 @@
 
   function overlayTransition() {
     return { duration: prefersReducedMotion ? 0 : 400, delay: 0 };
-  }
-
-  function addDataLayers(localMap, municipal, attica, ghsl) {
-    localMap.addSource("municipal-epochs", {
-      type: "geojson",
-      data: municipal
-    });
-    localMap.addSource("attica-outline", { type: "geojson", data: attica });
-    localMap.addSource("ghsl-bands", { type: "geojson", data: ghsl });
-
-    var beforeRoads = "road-secondary";
-    localMap.addLayer(
-      {
-        id: "census-fill",
-        type: "fill",
-        source: "municipal-epochs",
-        minzoom: 8.5,
-        maxzoom: 15,
-        paint: {
-          "fill-color": clayExpression(activeEpoch),
-          "fill-opacity": 0,
-          "fill-color-transition": overlayTransition(),
-          "fill-opacity-transition": overlayTransition()
-        }
-      },
-      beforeRoads
-    );
-
-    // The source geometries are nested and cumulative. Newer extents sit
-    // below older ones so first-built land retains its lighter epoch color.
-    GHSL_YEARS.slice()
-      .reverse()
-      .forEach(function (year) {
-        var index = GHSL_YEARS.indexOf(year);
-        localMap.addLayer(
-          {
-            id: "ghsl-" + year,
-            type: "fill",
-            source: "ghsl-bands",
-            minzoom: 8.5,
-            maxzoom: 15,
-            filter: ["==", ["get", "by_year"], year],
-            paint: {
-              "fill-color": GHSL_RAMP[index],
-              "fill-opacity": 0,
-              "fill-opacity-transition": overlayTransition()
-            }
-          },
-          beforeRoads
-        );
-      });
-
-    localMap.addLayer(
-      {
-        id: "municipal-boundaries",
-        type: "line",
-        source: "municipal-epochs",
-        minzoom: 8.5,
-        maxzoom: 15,
-        paint: {
-          "line-color": "#8F8A83",
-          "line-width": 0.75,
-          "line-opacity": 1,
-          "line-color-transition": overlayTransition(),
-          "line-width-transition": overlayTransition()
-        }
-      },
-      beforeRoads
-    );
-
-    localMap.addLayer(
-      {
-        id: "attica-outline",
-        type: "line",
-        source: "attica-outline",
-        paint: {
-          "line-color": "#8F8A83",
-          "line-width": 1,
-          "line-opacity": 1
-        }
-      },
-      beforeRoads
-    );
-
-    var refugeeFilter = [
-      "in",
-      ["get", "name_el"],
-      ["literal", REFUGEE_MUNICIPALITIES]
-    ];
-    localMap.addLayer({
-      id: "refugee-fill",
-      type: "fill",
-      source: "municipal-epochs",
-      filter: refugeeFilter,
-      paint: {
-        "fill-color": "#9C552B",
-        "fill-opacity": 0,
-        "fill-opacity-transition": overlayTransition()
-      }
-    });
-    localMap.addLayer({
-      id: "refugee-line",
-      type: "line",
-      source: "municipal-epochs",
-      filter: refugeeFilter,
-      paint: {
-        "line-color": "#9C552B",
-        "line-width": 2,
-        "line-opacity": 0,
-        "line-opacity-transition": overlayTransition()
-      }
-    });
-    localMap.addLayer({
-      id: "refugee-labels",
-      type: "symbol",
-      source: "municipal-epochs",
-      filter: refugeeFilter,
-      layout: {
-        visibility: "none",
-        "text-field": ["get", "name_el"],
-        "text-font": ["Commissioner SemiBold"],
-        "text-size": 11,
-        "text-max-width": 11,
-        "text-padding": 8
-      },
-      paint: {
-        "text-color": "#9C552B",
-        "text-halo-color": MAP_GROUND,
-        "text-halo-width": 1
-      }
-    });
   }
 
   function setBaseTransitions(localMap) {
@@ -384,21 +261,26 @@
 
   function setBoundaryStyle(dataLayerVisible) {
     if (!dataReady || !map) return;
-    map.setPaintProperty(
-      "municipal-boundaries",
-      "line-color",
-      dataLayerVisible ? "#FFFFFF" : "#8F8A83"
-    );
-    map.setPaintProperty(
-      "municipal-boundaries",
-      "line-width",
-      dataLayerVisible ? 0.9 : 0.75
-    );
-    map.setPaintProperty(
-      "municipal-boundaries",
-      "line-opacity",
-      dataLayerVisible ? 0.9 : 1
-    );
+    [
+      { id: "community-boundaries", dataWidth: 0.7, plainWidth: 0.6 },
+      { id: "municipal-boundaries", dataWidth: 1.2, plainWidth: 0.9 }
+    ].forEach(function (boundary) {
+      map.setPaintProperty(
+        boundary.id,
+        "line-color",
+        dataLayerVisible ? "#FFFFFF" : "#8F8A83"
+      );
+      map.setPaintProperty(
+        boundary.id,
+        "line-width",
+        dataLayerVisible ? boundary.dataWidth : boundary.plainWidth
+      );
+      map.setPaintProperty(
+        boundary.id,
+        "line-opacity",
+        dataLayerVisible ? 0.9 : 1
+      );
+    });
   }
 
   function renderDataLayer() {
@@ -424,6 +306,26 @@
         "fill-opacity",
         activeMapLayer === "census" ? 1 : 0
       );
+      map.setLayoutProperty(
+        "height-carpet",
+        "visibility",
+        activeMapLayer === "heights" ? "visible" : "none"
+      );
+      map.setPaintProperty(
+        "street-tree-texture",
+        "circle-opacity",
+        activeMapLayer === "green" ? 0.7 : 0
+      );
+      map.setPaintProperty(
+        "green-fill",
+        "fill-opacity",
+        activeMapLayer === "green" ? 0.6 : 0
+      );
+      map.setPaintProperty(
+        "green-line",
+        "line-opacity",
+        activeMapLayer === "green" ? 1 : 0
+      );
     }
 
     if (ghslChanged) {
@@ -440,14 +342,13 @@
     }
 
     if (layerChanged) {
-      setBoundaryStyle(
-        activeMapLayer === "census" || activeMapLayer === "satellite"
-      );
+      setBoundaryStyle(activeMapLayer !== "footprints");
     }
     if (activeMapLayer !== "census") hideTooltip();
   }
 
-  function setLegend(title, colors, breaks, description) {
+  function setLegend(layer, title, colors, breaks, description) {
+    legend.dataset.layer = layer;
     legendTitle.textContent = title;
     legendDescription.textContent = description;
     legendSwatches.replaceChildren();
@@ -468,6 +369,7 @@
 
   function showCensusLegend() {
     setLegend(
+      "census",
       "Built " + EPOCHS[activeEpoch].label,
       CLAY_RAMP,
       ["0–<5", "5–<15", "15–<25", "25–<35", "35–<50", "50–100%"],
@@ -477,6 +379,7 @@
 
   function showGhslLegend() {
     setLegend(
+      "satellite",
       "Built-up land · by " + activeGhslStop,
       GHSL_RAMP,
       ["1975", "1990", "2005", "2020"],
@@ -484,18 +387,73 @@
     );
   }
 
+  function showHeightsLegend() {
+    setLegend(
+      "heights",
+      "Building height",
+      HEIGHT_RAMP,
+      [
+        "0–3 m\n≈1 storey",
+        "3–9 m\n≈2–3 storeys",
+        "9–15 m\n≈4–5 storeys",
+        "15–21 m\n≈6–7 storeys",
+        "21+ m\n≈7+ storeys"
+      ],
+      "Urban Atlas 2012 · 10 m cells · height above ground"
+    );
+  }
+
+  function showGreenLegend() {
+    setLegend(
+      "green",
+      "Green urban areas",
+      ["#7A9367"],
+      ["Class 14100"],
+      "Urban Atlas 2018 · areas under 0.25 ha are not mapped"
+    );
+  }
+
+  function showFootprintsLegend() {
+    setLegend(
+      "footprints",
+      "Building footprints",
+      ["#6E6862"],
+      ["Present day"],
+      "OpenStreetMap · no individual construction date"
+    );
+  }
+
   function updateLegend() {
     if (activeMapLayer === "census") {
       showCensusLegend();
+    } else if (activeMapLayer === "heights") {
+      showHeightsLegend();
     } else if (activeMapLayer === "satellite") {
       showGhslLegend();
+    } else if (activeMapLayer === "green") {
+      showGreenLegend();
+    } else if (activeMapLayer === "footprints" && currentChapter === "10") {
+      showFootprintsLegend();
     } else {
       legend.hidden = true;
     }
   }
 
+  function syncEpochAvailability() {
+    var available = activeMapLayer === "census";
+    epochSelect.disabled = !available;
+    epochSelect.setAttribute("aria-disabled", available ? "false" : "true");
+  }
+
   function setActiveLayer(layer) {
+    var alreadyRendered =
+      activeMapLayer === layer && renderedLayer === layer && dataReady;
     activeMapLayer = layer;
+    syncEpochAvailability();
+    if (alreadyRendered) {
+      if (layer === "footprints") updateLegend();
+      return;
+    }
     updateLegend();
     renderDataLayer();
   }
@@ -531,6 +489,15 @@
       setGhslStop(year);
       var ghslChip = "08 / 10 · Built up by " + year;
       if (chip.textContent !== ghslChip) chip.textContent = ghslChip;
+    } else if (chapter === "9") {
+      if ((chapterProgress[chapter] || 0) < 0.5) {
+        setCensusEpoch("p_1946_80");
+        setActiveLayer("census");
+        chip.textContent = "09 / 10 · 1946–1980";
+      } else {
+        setActiveLayer("heights");
+        chip.textContent = "09 / 10 · Building height · 2012";
+      }
     }
   }
 
@@ -619,7 +586,7 @@
       applySweep("8");
     } else if (chapter === "9") {
       setCensusEpoch(state.epoch);
-      setActiveLayer(state.layer);
+      applySweep("9");
     } else if (chapter === "10") {
       setCensusEpoch(epochSelect.value);
       var selectedLayer = controls.querySelector(
@@ -650,30 +617,21 @@
     chip.textContent = state.chip;
     chip.hidden = chapter === "10";
     controls.hidden = chapter !== "10";
-    mapStatus.hidden = chapter !== "7";
-    mapStatus.textContent =
-      chapter === "7"
-        ? "Green-space layer pending the Urban Atlas licence check"
-        : "";
-
     if (chapter === "10" && options && options.resetExplore) {
       resetExploreControls();
-    }
-
-    if (chapter !== "5" && chapter !== "8" && chapter !== "9" && chapter !== "10") {
-      legend.hidden = true;
     }
 
     applyChapterMapState(chapter, !options || options.moveCamera !== false);
   }
 
-  function getCombinedCount(properties) {
-    return ["n_1946_60", "n_1961_70", "n_1971_80"].reduce(function (
-      total,
-      property
-    ) {
-      return total + (Number(properties[property]) || 0);
-    }, 0);
+  function getEpochCount(properties, epoch) {
+    if (epoch.count) return Number(properties[epoch.count]);
+    if (epoch.counts) {
+      return epoch.counts.reduce(function (total, property) {
+        return total + (Number(properties[property]) || 0);
+      }, 0);
+    }
+    return 0;
   }
 
   function showTooltip(feature, point) {
@@ -681,13 +639,16 @@
     var properties = feature.properties || {};
     var epoch = EPOCHS[activeEpoch];
     var share = Number(properties[activeEpoch]);
-    var count = epoch.count
-      ? Number(properties[epoch.count])
-      : getCombinedCount(properties);
+    if (activeEpoch === "p_notstated") share = 0;
+    var count = getEpochCount(properties, epoch);
     var total = Number(properties.total);
 
     var name = document.createElement("strong");
-    name.textContent = properties.name_el || "Municipality";
+    name.textContent = properties.name_el || "Community";
+    if (String(properties.code || "").indexOf("3514501") === 0) {
+      name.textContent +=
+        " — municipality total; no finer census geography is published";
+    }
     var value = document.createElement("span");
     value.textContent =
       epoch.label + ": " + (Number.isFinite(share) ? share.toFixed(1) : "—") + "%";
@@ -791,7 +752,25 @@
         loadMapData()
           .then(function (data) {
             if (map !== localMap) return;
-            addDataLayers(localMap, data[0], data[1], data[2]);
+            window.AthensDataLayers.add(
+              localMap,
+              data[0],
+              data[1],
+              data[2],
+              data[3],
+              data[4],
+              data[5],
+              data[6],
+              {
+                activeEpoch: activeEpoch,
+                clayExpression: clayExpression,
+                overlayTransition: overlayTransition,
+                ghslYears: GHSL_YEARS,
+                ghslRamp: GHSL_RAMP,
+                refugeeMunicipalities: REFUGEE_MUNICIPALITIES,
+                mapGround: MAP_GROUND
+              }
+            );
             dataReady = true;
             renderedLayer = null;
             renderedEpoch = null;
@@ -827,7 +806,7 @@
       var rect = steps[i].getBoundingClientRect();
       if (rect.top <= trigger && rect.bottom >= trigger) {
         var chapter = steps[i].getAttribute("data-chapter");
-        if (chapter === "5" || chapter === "8") {
+        if (chapter === "5" || chapter === "8" || chapter === "9") {
           chapterProgress[chapter] = Math.min(
             1,
             Math.max(0, (trigger - rect.top) / rect.height)
@@ -855,7 +834,10 @@
       })
       .onStepProgress(function (response) {
         var chapter = response.element.getAttribute("data-chapter");
-        if ((chapter === "5" || chapter === "8") && currentChapter === chapter) {
+        if (
+          (chapter === "5" || chapter === "8" || chapter === "9") &&
+          currentChapter === chapter
+        ) {
           chapterProgress[chapter] = response.progress;
           applySweep(chapter);
         }
