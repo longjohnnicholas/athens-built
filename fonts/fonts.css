@@ -1,0 +1,57 @@
+/* Self-hosted Google Fonts: GFS Didot + Commissioner
+   Source: https://fonts.googleapis.com/css2?family=GFS+Didot:ital@0;1&display=swap
+           https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700&display=swap
+   Retrieved: 2026-07-14. See LICENSE-FONTS.md for licensing (SIL OFL 1.1). */
+
+/* GFS Didot — regular 400 only.
+   Note: Google Fonts does not offer a GFS Didot italic style (requesting
+   ital=1 returns "400: Missing font family / Requested: GFS Didot (style:
+   normal, weight: 400, {ital=1.0})"). Only the normal style is vendored;
+   italic text will fall back to the browser's synthetic (faux) italic. */
+@font-face {
+  font-family: 'GFS Didot';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('gfs-didot-400-greek-ext.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+@font-face {
+  font-family: 'GFS Didot';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('gfs-didot-400-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'GFS Didot';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('gfs-didot-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Commissioner — variable font, weight axis 100–900 (covers the requested
+   400/500/600/700 statics in a single file per subset). Google served the
+   identical file for each discrete weight request (400, 500, 600, 700),
+   confirming it is the variable master; verified via fontTools fvar table
+   (wght min 100 / max 900). One file per subset used instead of four
+   static weight files. */
+@font-face {
+  font-family: 'Commissioner';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('commissioner-var-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Commissioner';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('commissioner-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
