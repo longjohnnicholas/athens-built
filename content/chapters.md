@@ -10,7 +10,7 @@
 
 Stand on a street corner anywhere in the Athens basin and look up. The same building looks back: a concrete frame of five, six, seven storeys, balconies running the width of the facade, the top floors stepping back against the sky. Ride a bus from Patisia to Kallithea to Peristeri and the type repeats, with small variations, for an hour in any direction. Athens is among the oldest cities in Europe, and almost nothing standing in it is old. Of the buildings standing in the Municipality of Athens at the 2021 census, two in three were built between 1946 and 1980. Below, we tell the story of how a small neoclassical capital, swollen first by refugees and then by villagers, rebuilt itself block by block into the concrete city on your screen, without a master plan, with almost no bank credit, and with barely any state construction.
 
-*Sources: ELSTAT 2021 Buildings Census, Table 6 (see stage1/DATA-LOG.md); Karadimitriou, Maloutas & Arapoglou 2021.*
+*Sources: ELSTAT 2021 Buildings Census, Table 6; Karadimitriou, Maloutas & Arapoglou 2021.*
 
 ## 2. A small capital, big plans (1833–1920)
 

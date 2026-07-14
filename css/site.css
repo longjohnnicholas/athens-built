@@ -1,7 +1,3 @@
-/* Design system per DESIGN.md — Stage 2 draft.
-   Chrome is achromatic plaster/concrete; the clay ramp is reserved for data
-   and appears in chrome only as the eyebrow dash and link color. */
-
 :root {
   --paper: #F5F4F0;
   --card: #FDFCFA;
@@ -11,19 +7,37 @@
   --line: #DCD9D2;
   --accent: #77391A;
   --accent-2: #9C552B;
-
   --map-ground: #E9E7E2;
   --map-ground-historic: #EDE6D8;
   --map-ground-satellite: #E3E4E1;
-  --map-ground-green: #E7EAE2;
-
   --font-display: "GFS Didot", Georgia, "Times New Roman", serif;
   --font-text: "Commissioner", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-
   --rail-margin: clamp(1.25rem, 5vw, 4.5rem);
-  --card-width: min(26rem, 88vw);
-
+  --card-width: min(30rem, 88vw);
   color-scheme: light;
+}
+
+html {
+  scrollbar-color: #8F8A83 transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8F8A83;
+}
+
+::selection {
+  background: #E4C4A0;
+  color: var(--ink);
 }
 
 * {
@@ -45,6 +59,10 @@ a {
   text-underline-offset: 2px;
 }
 
+a:visited {
+  color: #5B2D18;
+}
+
 a:hover {
   color: var(--accent-2);
 }
@@ -53,8 +71,6 @@ a:hover {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
-
-/* ---------- Skip link ---------- */
 
 .skip-link {
   position: absolute;
@@ -72,19 +88,35 @@ a:hover {
   color: var(--ink);
 }
 
-/* ---------- Hero ---------- */
-
 .hero {
+  position: relative;
   min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem var(--rail-margin);
+  padding: 7rem var(--rail-margin) 5.5rem;
   border-bottom: 1px solid var(--line);
 }
 
-.hero > * {
+.hero > *:not(.hero-folio) {
   max-width: 44rem;
+}
+
+.hero-folio {
+  position: absolute;
+  top: 3rem;
+  inset-inline: var(--rail-margin);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -92,14 +124,14 @@ a:hover {
   align-items: center;
   gap: 0.6em;
   margin: 0 0 1.1rem;
+  color: var(--ink-3);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-3);
 }
 
-.eyebrow::before {
+.hero-kicker::before {
   content: "";
   flex: none;
   width: 1.4rem;
@@ -108,39 +140,46 @@ a:hover {
 }
 
 .hero h1 {
-  margin: 0 0 1.4rem;
+  margin: 0 0 1.4rem -0.02em;
   font-family: var(--font-display);
+  font-kerning: normal;
   font-weight: 400;
   font-size: clamp(2.6rem, 6vw, 4.3rem);
-  line-height: 1.05;
+  letter-spacing: -0.015em;
+  line-height: 1.01;
   text-wrap: balance;
+  word-spacing: -0.04em;
 }
 
 .hero-tagline {
+  max-width: 55ch;
   margin: 0 0 1.1rem;
-  font-size: 1.22rem;
-  line-height: 1.55;
   color: var(--ink-2);
-  max-width: 58ch;
+  font-size: 1.22rem;
+  line-height: 1.52;
+  text-wrap: pretty;
 }
 
 .hero-credit {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--ink-3);
   max-width: 65ch;
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.8rem;
 }
 
 .hero-scrollcue {
-  margin: 3.5rem 0 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  position: absolute;
+  bottom: 1.75rem;
+  left: var(--rail-margin);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--ink-3);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
-
-/* ---------- Scrolly layout ---------- */
 
 .scrolly {
   position: relative;
@@ -155,16 +194,19 @@ a:hover {
   transition: background-color 400ms ease;
 }
 
-.scrolly__map-wrap.tint-historic { background: var(--map-ground-historic); }
-.scrolly__map-wrap.tint-satellite { background: var(--map-ground-satellite); }
-.scrolly__map-wrap.tint-green { background: var(--map-ground-green); }
+.scrolly__map-wrap.tint-historic {
+  background: var(--map-ground-historic);
+}
+
+.scrolly__map-wrap.tint-satellite {
+  background: var(--map-ground-satellite);
+}
 
 .scrolly__map {
   width: 100%;
   height: 100%;
 }
 
-/* Ghost numerals: placeholder art direction until real layers arrive. */
 .scrolly__ghost {
   position: absolute;
   inset: 0;
@@ -176,9 +218,9 @@ a:hover {
 }
 
 .scrolly__ghost span {
+  color: rgba(38, 36, 31, 0.07);
   font-family: var(--font-display);
   font-size: clamp(3rem, 9vw, 7rem);
-  color: rgba(38, 36, 31, 0.07);
   transition: opacity 400ms ease;
 }
 
@@ -186,37 +228,24 @@ a:hover {
   opacity: 0;
 }
 
-.scrolly__placeholder-note {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  z-index: 6;
-  margin: 0;
-  font-size: 0.72rem;
-  /* ink-2, not ink-3: this text sits on map tints where ink-3 falls under 4.5:1 */
-  color: var(--ink-2);
-}
-
-/* Chapter chip (was the debug label); bottom-right so the card rail never
-   paints over it (the steps column stacks above the sticky map wrap) */
 .scrolly__chip {
   position: absolute;
-  right: 1rem;
-  bottom: 0.75rem;
+  right: 3.5rem;
+  bottom: 1.5rem;
   z-index: 10;
-  padding: 0.45em 0.75em;
+  padding: 0.5rem 0.7rem 0.4rem;
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
+  border: 0;
+  border-top: 1px solid var(--ink-2);
+  border-radius: 0;
   color: var(--ink-3);
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.075em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
-
-/* ---------- Narrative cards ---------- */
 
 .scrolly__steps {
   position: relative;
@@ -225,63 +254,113 @@ a:hover {
 }
 
 .step {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   pointer-events: none;
-  /* keeps consecutive taller-than-viewport cards from touching */
-  padding: 3rem 0;
 }
 
 .step.prose {
-  pointer-events: none;
-  background: none;
   max-width: none;
   margin: 0;
-  padding: 0;
+  padding-block: clamp(3rem, 6vh, 4.5rem);
+  background: none;
+  pointer-events: none;
 }
 
 .step .card {
-  pointer-events: auto;
   width: var(--card-width);
   margin-left: var(--rail-margin);
-  padding: 1.75rem 2rem;
+  padding: 1.875rem 2rem;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(38, 36, 31, 0.06), 0 10px 28px rgba(38, 36, 31, 0.05);
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 1rem;
+  line-height: 1.62;
+  pointer-events: auto;
+}
+
+.chapter-folio {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.085em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .card h2 {
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.9rem -0.015em;
   font-family: var(--font-display);
+  font-size: 2.05rem;
   font-weight: 400;
-  font-size: 1.85rem;
-  line-height: 1.15;
-}
-
-.card .eyebrow {
-  margin-bottom: 0.7rem;
+  letter-spacing: -0.012em;
+  line-height: 1.08;
 }
 
 .card p {
   margin: 0 0 1rem;
 }
 
-.card p:last-child {
+.card > p:last-child {
   margin-bottom: 0;
 }
 
-.card .sources {
+.loanword {
+  font-style: oblique 10deg;
+}
+
+.data-lockup {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 1.25rem 0;
+  border-block: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  line-height: 1.48;
+}
+
+.data-lockup strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 3.75rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.sources {
+  display: grid;
+  grid-template-columns: 5.25rem 1fr;
+  gap: 0.75rem;
   margin-top: 1.1rem;
   padding-top: 0.8rem;
   border-top: 1px solid var(--line);
-  font-size: 0.8rem;
-  line-height: 1.5;
   color: var(--ink-3);
+  font-size: 0.78rem;
+  line-height: 1.48;
 }
 
-/* ---------- Sources section & footer ---------- */
+.sources__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sources p {
+  margin: 0;
+}
 
 #sources {
   padding: 4.5rem var(--rail-margin);
@@ -289,10 +368,10 @@ a:hover {
 }
 
 #sources h2 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.85rem;
   margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 400;
 }
 
 #sources p {
@@ -305,17 +384,46 @@ footer {
   border-top: 1px solid var(--line);
 }
 
-footer p {
-  max-width: 46rem;
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.6;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 8rem repeat(3, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  max-width: 72rem;
   color: var(--ink-3);
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
-/* ---------- Mobile: stacked reading path (PLAN §5) ---------- */
+.footer-grid p {
+  margin: 0;
+}
+
+.footer-grid strong,
+.footer-label {
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) and (min-width: 701px) {
+  :root {
+    --card-width: 24rem;
+  }
+}
 
 @media (max-width: 700px) {
+  .desktop-break {
+    display: none;
+  }
+
+  .hero {
+    min-height: 78vh;
+    padding: 7rem 1.25rem 5.5rem;
+  }
+
+  .hero-folio {
+    inset-inline: 1.25rem;
+  }
+
   .scrolly__map-wrap {
     display: none;
   }
@@ -327,18 +435,29 @@ footer p {
   .step {
     min-height: auto;
     display: block;
-    padding: 0.75rem 0;
+  }
+
+  .step.prose {
+    padding: 0;
   }
 
   .step .card {
     width: auto;
-    margin: 0 0.75rem;
-    padding: 1.4rem 1.25rem;
+    margin: 0;
+    padding: 2.5rem 1.25rem 3rem;
+    background: var(--paper);
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
   }
 
-  .hero {
-    min-height: 70vh;
-    padding: 3rem 1.25rem;
+  .data-lockup {
+    grid-template-columns: 6.25rem 1fr;
+  }
+
+  .data-lockup strong {
+    font-size: 3.25rem;
   }
 
   #sources,
@@ -346,9 +465,11 @@ footer p {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-}
 
-/* ---------- Reduced motion ---------- */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .scrolly__map-wrap,

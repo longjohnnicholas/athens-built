@@ -16,16 +16,16 @@
   // Placeholder art direction per chapter (DESIGN.md §5):
   // ghost numeral, ground tint, chip text.
   var CHAPTERS = {
-    "1": { chip: "01 · Athens today", ghost: "2021", tint: "" },
-    "2": { chip: "02 · 1833–1920", ghost: "1875", tint: "tint-historic" },
-    "3": { chip: "03 · 1922–1928", ghost: "1922", tint: "" },
-    "4": { chip: "04 · 1929–1940", ghost: "1929", tint: "tint-historic" },
-    "5": { chip: "05 · 1946–1980", ghost: "1946–1980", tint: "" },
-    "6": { chip: "06 · 1950s–1970s", ghost: "1955", tint: "" },
-    "7": { chip: "07 · 1833 onward", ghost: "2018", tint: "tint-green" },
-    "8": { chip: "08 · 1980–2008", ghost: "1975–2020", tint: "tint-satellite" },
-    "9": { chip: "09 · 1946–1980", ghost: "1946–1980", tint: "" },
-    "10": { chip: "10 · Explore", ghost: "", tint: "" }
+    "1": { chip: "01 / 10 · Athens today", ghost: "2021", tint: "" },
+    "2": { chip: "02 / 10 · 1833–1920", ghost: "1875", tint: "tint-historic" },
+    "3": { chip: "03 / 10 · 1922–1928", ghost: "1922", tint: "" },
+    "4": { chip: "04 / 10 · 1929–1940", ghost: "1929", tint: "tint-historic" },
+    "5": { chip: "05 / 10 · 1946–1980", ghost: "1946–1980", tint: "" },
+    "6": { chip: "06 / 10 · 1950s–1970s", ghost: "1955", tint: "" },
+    "7": { chip: "07 / 10 · 1833 onward", ghost: "2018", tint: "tint-green" },
+    "8": { chip: "08 / 10 · 1980–2008", ghost: "1975–2020", tint: "tint-satellite" },
+    "9": { chip: "09 / 10 · 1946–1980", ghost: "1946–1980", tint: "" },
+    "10": { chip: "10 / 10 · Explore", ghost: "", tint: "" }
   };
 
   var TINT_CLASSES = ["tint-historic", "tint-satellite", "tint-green"];
