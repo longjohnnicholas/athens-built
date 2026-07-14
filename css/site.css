@@ -469,6 +469,10 @@ a:hover {
   font-style: oblique 10deg;
 }
 
+.map-static {
+  display: none;
+}
+
 .data-lockup {
   display: grid;
   /* wide enough that "2 in 3" sets on one line at 3.75rem (measured 152.3px) */
@@ -680,6 +684,24 @@ footer {
     border-top: 1px solid var(--line);
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .map-static {
+    display: block;
+    margin: 0 0 1.35rem;
+  }
+
+  .map-static img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-static figcaption {
+    margin-top: 0.65rem;
+    color: var(--ink-3);
+    font-size: 0.72rem;
+    line-height: 1.45;
   }
 
   .data-lockup {
