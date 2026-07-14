@@ -560,6 +560,10 @@ a:hover {
   line-height: 1.45;
 }
 
+.diagram-mobile-key {
+  display: none;
+}
+
 .sources {
   display: grid;
   grid-template-columns: 5.25rem 1fr;
@@ -651,11 +655,25 @@ footer {
 
   .hero {
     min-height: 78vh;
-    padding: 7rem 1.25rem 5.5rem;
+    padding: calc(7rem + env(safe-area-inset-top, 0px))
+      calc(1.25rem + env(safe-area-inset-right, 0px))
+      calc(5.5rem + env(safe-area-inset-bottom, 0px))
+      calc(1.25rem + env(safe-area-inset-left, 0px));
   }
 
   .hero-folio {
-    inset-inline: 1.25rem;
+    left: calc(1.25rem + env(safe-area-inset-left, 0px));
+    right: calc(1.25rem + env(safe-area-inset-right, 0px));
+  }
+
+  .hero-scrollcue {
+    left: calc(1.25rem + env(safe-area-inset-left, 0px));
+  }
+
+  .card a[href^="#"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .scrolly__map-wrap {
@@ -678,7 +696,8 @@ footer {
   .step .card {
     width: auto;
     margin: 0;
-    padding: 2.5rem 1.25rem 3rem;
+    padding: 2.5rem calc(1.25rem + env(safe-area-inset-right, 0px)) 3rem
+      calc(1.25rem + env(safe-area-inset-left, 0px));
     background: var(--paper);
     border: 0;
     border-top: 1px solid var(--line);
@@ -698,28 +717,132 @@ footer {
   }
 
   .map-static figcaption {
-    margin-top: 0.65rem;
+    margin-top: 0;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--line);
     color: var(--ink-3);
-    font-size: 0.72rem;
-    line-height: 1.45;
+    font-size: 0.73rem;
+    letter-spacing: 0.005em;
+    line-height: 1.5;
   }
 
   .data-lockup {
-    grid-template-columns: 6.25rem 1fr;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
   }
 
   .data-lockup strong {
     font-size: 3.25rem;
   }
 
+  .diagram__labels {
+    font-size: 18px;
+  }
+
+  .diagram-mobile-key {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    border-bottom: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .diagram-mobile-key li {
+    min-width: 0;
+    padding: 0.6rem 0.55rem 0.7rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .diagram-mobile-key li:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0.55rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .diagram-mobile-key strong,
+  .diagram-mobile-key span {
+    display: block;
+  }
+
+  .diagram-mobile-key strong {
+    color: var(--ink-2);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.075em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .diagram-mobile-key span {
+    margin-top: 0.25rem;
+    color: var(--ink-3);
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
   #sources,
   footer {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: calc(1.25rem + env(safe-area-inset-left, 0px));
+    padding-right: calc(1.25rem + env(safe-area-inset-right, 0px));
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .footer-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+  }
+
+  .footer-grid p:not(.footer-label) {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+
+  footer {
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sources p,
+  .footer-grid p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: clamp(2.35rem, 11vw, 2.75rem);
+    line-height: 0.99;
+  }
+
+  .hero-folio,
+  .chapter-folio {
+    gap: 0.65rem;
+  }
+
+  .hero-folio span:last-child,
+  .chapter-folio span:last-child {
+    text-align: right;
+  }
+
+  .data-lockup {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 0.75rem;
+  }
+
+  .data-lockup strong {
+    font-size: 3.45rem;
+  }
+
+  .sources {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 }
 
