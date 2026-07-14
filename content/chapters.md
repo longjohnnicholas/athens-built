@@ -14,7 +14,7 @@ Stand on a street corner anywhere in the Athens basin and look up. The same buil
 
 ## 2. A small capital, big plans (1833–1920)
 
-**Map state:** historic ground tint with the Attica outline; the Kaupert raster remains unavailable pending its licence check.
+**Map state:** historic ground tint with the traced 1894 built-up extent from the Baedeker Athens and Piraeus plans (after Kaupert's survey).
 
 Athens became the capital of the new Greek state in 1834, when it was a town of a few thousand people below the Acropolis. The plan drawn for it the year before was ambitious. Stamatios Kleanthis and Eduard Schaubert laid out boulevards, squares, public gardens, and an archaeological park wrapping the ancient center. Within months the plan was in retreat. Landowners whose plots fell under the proposed squares protested the expropriations, the young state had no money to pay them, and in 1834 Leo von Klenze redrew the scheme at a fraction of its ambition. That first defeat set the pattern for the next century and a half. Athenian land was held in small private plots, assembling them was beyond the state's means, and plans that needed open space lost to the owners of the ground. The city then grew slowly, a modest capital of neoclassical houses spreading out from the old town. By 1920 the wider agglomeration held about 453,000 people. Surveys made by German cartographers in the 1870s and 1880s show how little ground a century of growth had covered.
 

@@ -19,6 +19,10 @@
   var GHSL_RAMP = ["#DDDAD4", "#BBB7AF", "#736F66", "#4A463F"];
   var GHSL_YEARS = [1975, 1990, 2005, 2020];
   var HEIGHT_RAMP = ["#DEE3E7", "#B8C2CA", "#8FA0AC", "#64798A", "#3C4F60"];
+  var HISTORIC_EXTENT_LEGEND =
+    "Built-up area · traced from the 1894 Baedeker plan (after Kaupert's survey) · georeferencing ≈25–45 m";
+  var GHSL_OBSERVATION_GAP =
+    "No comparable observation exists between 1894 and 1975.";
   var MAX_BOUNDS = [
     [23.2, 37.6],
     [24.3, 38.4]
@@ -63,7 +67,8 @@
       center: [23.727, 37.976],
       zoom: 12.2,
       layer: "footprints",
-      historic: true
+      historic: true,
+      extent1894: true
     },
     "3": {
       chip: "03 / 10 · 1922–1928",
@@ -146,6 +151,7 @@
   var renderedGhslStop = null;
   var renderedGround = null;
   var renderedRefugees = null;
+  var renderedExtent1894 = null;
   var tooltipPinned = false;
 
   function cameraPadding() {
@@ -188,7 +194,8 @@
         fetchGeoJSON("data/ghsl_bands.geojson"),
         fetchGeoJSON("data/green_areas.geojson"),
         fetchGeoJSON("data/heights_10m_bounds.json"),
-        fetchGeoJSON("data/street_trees.geojson")
+        fetchGeoJSON("data/street_trees.geojson"),
+        fetchGeoJSON("data/extent_1894.geojson")
       ]);
     }
     return dataPromise;
@@ -256,6 +263,13 @@
       "visibility",
       visible ? "visible" : "none"
     );
+  }
+
+  function setHistoricExtent(visible) {
+    if (!dataReady || !map || renderedExtent1894 === visible) return;
+    renderedExtent1894 = visible;
+    map.setPaintProperty("extent-1894-fill", "fill-opacity", visible ? 0.5 : 0);
+    map.setPaintProperty("extent-1894-line", "line-opacity", visible ? 1 : 0);
   }
 
   function setBoundaryStyle(dataLayerVisible) {
@@ -377,12 +391,26 @@
   }
 
   function showGhslLegend() {
+    var description = "Cumulative built-up land: all earlier bands remain visible";
+    if (activeGhslStop === 1990) {
+      description += " " + GHSL_OBSERVATION_GAP;
+    }
     setLegend(
       "satellite",
       "Built-up land · by " + activeGhslStop,
       GHSL_RAMP,
       ["1975", "1990", "2005", "2020"],
-      "Cumulative built-up land: all earlier bands remain visible"
+      description
+    );
+  }
+
+  function showHistoricExtentLegend() {
+    setLegend(
+      "historic-extent",
+      HISTORIC_EXTENT_LEGEND,
+      ["#B9B4AA"],
+      ["1894"],
+      ""
     );
   }
 
@@ -423,7 +451,9 @@
   }
 
   function updateLegend() {
-    if (activeMapLayer === "census") {
+    if (currentChapter === "2") {
+      showHistoricExtentLegend();
+    } else if (activeMapLayer === "census") {
       showCensusLegend();
     } else if (activeMapLayer === "heights") {
       showHeightsLegend();
@@ -577,6 +607,7 @@
 
     setGround(!!state.historic);
     setRefugeeHighlight(!!state.refugees);
+    setHistoricExtent(!!state.extent1894);
     if (chapter === "5") {
       setActiveLayer(state.layer);
       applySweep("5");
@@ -714,6 +745,7 @@
     renderedGhslStop = null;
     renderedGround = null;
     renderedRefugees = null;
+    renderedExtent1894 = null;
   }
 
   function initMap() {
@@ -759,6 +791,7 @@
               data[4],
               data[5],
               data[6],
+              data[7],
               {
                 activeEpoch: activeEpoch,
                 clayExpression: clayExpression,
@@ -774,6 +807,7 @@
             renderedEpoch = null;
             renderedGhslStop = null;
             renderedRefugees = null;
+            renderedExtent1894 = null;
             setChapterState(currentChapter, {
               moveCamera: false,
               resetExplore: false

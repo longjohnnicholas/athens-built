@@ -72,6 +72,12 @@ Fill `#7A9367` at 60% over map ground, boundary `#4F7A3D` at 0.5px. Class filter
 
 The building-height carpet uses the validated sequential slate ramp `#DEE3E7 → #B8C2CA → #8FA0AC → #64798A → #3C4F60` at breaks 0–3 / 3–9 / 9–15 / 15–21 / 21+ m. It is served as a transparent, georeferenced PNG image overlay rather than vector cells; zero and no-data cells are transparent. The source is the Urban Atlas 2012 DHM at 10 m resolution, so the 2012 reference date and its caveat remain visible whenever the layer is on.
 
+### Addendum — historic extent owner adjudication (2026-07-15)
+
+Chapter 2 binds the traced 1894 built-up extent from the Baedeker Athens and Piraeus plans, both labelled “Nach Kaupert,” over the historic ground tint. The extent uses `#B9B4AA` at 0.5 fill opacity with a 1px `#57534A` outline. Its legend is “Built-up area · traced from the 1894 Baedeker plan (after Kaupert's survey) · georeferencing ≈25–45 m.” The owner accepted this layer after 99.26% of its area fell within the GHSL-1975 band buffered by 100 m.
+
+The 1908 candidate is held, not rejected, at 98.57% pending the owner's Gate C decision. It must not be shipped or clipped in the interim: chapter 3 remains unchanged, and chapter 8's first GHSL state states that no comparable observation exists between 1894 and 1975.
+
 ## 3. Typography
 
 | Role | Face | Size / weight |

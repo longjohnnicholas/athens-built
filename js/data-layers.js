@@ -10,6 +10,7 @@
     green,
     heightBounds,
     streetTrees,
+    extent1894,
     config
   ) {
     var activeEpoch = config.activeEpoch;
@@ -31,6 +32,7 @@
     localMap.addSource("ghsl-bands", { type: "geojson", data: ghsl });
     localMap.addSource("green-areas", { type: "geojson", data: green });
     localMap.addSource("street-trees", { type: "geojson", data: streetTrees });
+    localMap.addSource("extent-1894", { type: "geojson", data: extent1894 });
     localMap.addSource("height-carpet", {
       type: "image",
       url: "data/heights_10m.png",
@@ -140,6 +142,34 @@
           beforeRoads
         );
       });
+
+    localMap.addLayer(
+      {
+        id: "extent-1894-fill",
+        type: "fill",
+        source: "extent-1894",
+        paint: {
+          "fill-color": "#B9B4AA",
+          "fill-opacity": 0,
+          "fill-opacity-transition": overlayTransition()
+        }
+      },
+      beforeRoads
+    );
+    localMap.addLayer(
+      {
+        id: "extent-1894-line",
+        type: "line",
+        source: "extent-1894",
+        paint: {
+          "line-color": "#57534A",
+          "line-width": 1,
+          "line-opacity": 0,
+          "line-opacity-transition": overlayTransition()
+        }
+      },
+      beforeRoads
+    );
 
     localMap.addLayer(
       {
