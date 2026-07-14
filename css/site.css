@@ -8,8 +8,6 @@
   --accent: #77391A;
   --accent-2: #9C552B;
   --map-ground: #E9E7E2;
-  --map-ground-historic: #EDE6D8;
-  --map-ground-satellite: #E3E4E1;
   --font-display: "GFS Didot", Georgia, "Times New Roman", serif;
   --font-text: "Commissioner", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --rail-margin: clamp(1.25rem, 5vw, 4.5rem);
@@ -191,41 +189,11 @@ a:hover {
   height: 100vh;
   width: 100%;
   background: var(--map-ground);
-  transition: background-color 400ms ease;
-}
-
-.scrolly__map-wrap.tint-historic {
-  background: var(--map-ground-historic);
-}
-
-.scrolly__map-wrap.tint-satellite {
-  background: var(--map-ground-satellite);
 }
 
 .scrolly__map {
   width: 100%;
   height: 100%;
-}
-
-.scrolly__ghost {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.scrolly__ghost span {
-  color: rgba(38, 36, 31, 0.07);
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 9vw, 7rem);
-  transition: opacity 400ms ease;
-}
-
-.scrolly__ghost span.is-fading {
-  opacity: 0;
 }
 
 .scrolly__chip {
@@ -245,6 +213,186 @@ a:hover {
   letter-spacing: 0.075em;
   line-height: 1.2;
   text-transform: uppercase;
+}
+
+.map-legend,
+.map-controls,
+.map-status,
+.map-tooltip,
+.map-attribution {
+  position: absolute;
+  z-index: 12;
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--ink-2);
+  font-family: var(--font-text);
+}
+
+.map-legend {
+  left: calc(var(--rail-margin) + var(--card-width) + 1.5rem);
+  bottom: 1.5rem;
+  width: min(22rem, calc(100vw - 7rem));
+  padding: 0.8rem 0.9rem 0.75rem;
+}
+
+.map-legend__title,
+.map-legend__description {
+  margin: 0;
+}
+
+.map-legend__title {
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.map-legend__swatches,
+.map-legend__breaks {
+  display: grid;
+  grid-template-columns: repeat(var(--legend-steps, 6), 1fr);
+}
+
+.map-legend__swatches {
+  height: 0.7rem;
+  margin-top: 0.6rem;
+}
+
+.map-legend__breaks {
+  margin-top: 0.25rem;
+  color: var(--ink-2);
+  font-size: 0.61rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.map-legend__breaks span:not(:first-child) {
+  text-align: center;
+}
+
+.map-legend__description {
+  margin-top: 0.55rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.map-controls {
+  top: 3.5rem;
+  right: 3.5rem;
+  width: 15rem;
+  padding: 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.map-controls > label,
+.map-controls select,
+.map-controls fieldset label {
+  min-height: 44px;
+}
+
+.map-controls > label {
+  display: flex;
+  align-items: center;
+}
+
+.map-controls select {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0 0.65rem;
+  border: 1px solid #8F8A83;
+  border-radius: 0;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.map-controls fieldset {
+  margin: 0.85rem 0 0;
+  padding: 0.55rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.map-controls legend {
+  padding: 0;
+}
+
+.map-controls fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.map-controls input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.map-status {
+  top: 3.5rem;
+  right: 3.5rem;
+  max-width: 19rem;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.map-tooltip {
+  width: 18rem;
+  padding: 0.75rem 0.85rem;
+  pointer-events: none;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.map-tooltip strong,
+.map-tooltip span {
+  display: block;
+}
+
+.map-tooltip strong {
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.map-tooltip span {
+  margin-top: 0.2rem;
+}
+
+.map-attribution {
+  right: 3.5rem;
+  bottom: 0.25rem;
+  z-index: 11;
+  padding: 0 0.2rem;
+  background: rgba(253, 252, 250, 0.88);
+  border: 0;
+  font-size: 0.58rem;
+  line-height: 1.35;
+}
+
+.map-attribution a,
+.map-attribution a:visited {
+  color: var(--ink-2);
+}
+
+[hidden] {
+  display: none !important;
 }
 
 .scrolly__steps {
@@ -339,6 +487,69 @@ a:hover {
   line-height: 0.9;
 }
 
+.diagram {
+  margin: 1.35rem 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.diagram svg {
+  display: block;
+  width: min(100%, 23rem);
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.diagram--wide svg {
+  width: 100%;
+}
+
+.diagram__ink,
+.diagram__frame,
+.diagram__panels {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.diagram__ink {
+  stroke-width: 1.5;
+}
+
+.diagram__frame {
+  stroke: var(--accent-2);
+  stroke-width: 3;
+}
+
+.diagram__panels {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.diagram__accent {
+  fill: var(--accent-2);
+  opacity: 0.72;
+}
+
+.diagram__accent--pale {
+  fill: #E4C4A0;
+}
+
+.diagram__labels {
+  fill: var(--ink-2);
+  font-family: var(--font-text);
+  font-size: 12px;
+}
+
+.diagram figcaption {
+  margin-top: 0.7rem;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
 .sources {
   display: grid;
   grid-template-columns: 5.25rem 1fr;
@@ -408,6 +619,16 @@ footer {
   :root {
     --card-width: 24rem;
   }
+
+  .map-controls,
+  .map-status {
+    right: 1.5rem;
+  }
+
+  .map-legend {
+    left: calc(var(--rail-margin) + 25.5rem);
+    width: calc(100vw - var(--rail-margin) - 27rem);
+  }
 }
 
 @media (max-width: 700px) {
@@ -472,8 +693,12 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scrolly__map-wrap,
-  .scrolly__ghost span {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
     transition: none;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

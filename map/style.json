@@ -1,0 +1,120 @@
+{
+  "version": 8,
+  "name": "Athens Built — OpenFreeMap",
+  "glyphs": "glyphs/{fontstack}/{range}.pbf",
+  "transition": {
+    "duration": 400,
+    "delay": 0
+  },
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://tiles.openfreemap.org/planet",
+      "attribution": "© OpenStreetMap contributors · OpenFreeMap"
+    }
+  },
+  "layers": [
+    {
+      "id": "ground",
+      "type": "background",
+      "paint": {
+        "background-color": "#E9E7E2"
+      }
+    },
+    {
+      "id": "landuse-ground",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "paint": {
+        "fill-color": "#E9E7E2"
+      }
+    },
+    {
+      "id": "park-ground",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "park",
+      "paint": {
+        "fill-color": "#E9E7E2"
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#C7D2D5"
+      }
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "minzoom": 11,
+      "paint": {
+        "line-color": "#C7D2D5",
+        "line-width": 0.75
+      }
+    },
+    {
+      "id": "road-secondary",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 12,
+      "filter": ["in", ["get", "class"], ["literal", ["secondary", "tertiary", "minor", "service"]]],
+      "paint": {
+        "line-color": "#F7F6F2",
+        "line-width": 0.75
+      }
+    },
+    {
+      "id": "road-primary",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 9,
+      "filter": ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary"]]],
+      "paint": {
+        "line-color": "#F7F6F2",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 1, 14, 1.75]
+      }
+    },
+    {
+      "id": "buildings",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "building",
+      "minzoom": 11,
+      "paint": {
+        "fill-color": "#6E6862",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "municipality-labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "minzoom": 10,
+      "filter": ["all", ["in", ["get", "class"], ["literal", ["city", "town", "suburb"]]], ["<=", ["coalesce", ["get", "rank"], 20], 20]],
+      "layout": {
+        "text-field": ["step", ["zoom"], ["coalesce", ["get", "name:latin"], ["get", "name:en"], ["get", "name"]], 12.5, ["coalesce", ["get", "name:el"], ["get", "name"]]],
+        "text-font": ["Commissioner Regular"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 10, 11, 14, 13],
+        "text-letter-spacing": 0.02,
+        "text-max-width": 8,
+        "text-padding": 18,
+        "symbol-sort-key": ["coalesce", ["get", "rank"], 20]
+      },
+      "paint": {
+        "text-color": "#57534A",
+        "text-halo-color": "#E9E7E2",
+        "text-halo-width": 1
+      }
+    }
+  ]
+}

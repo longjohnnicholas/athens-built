@@ -33,8 +33,44 @@
   <div class="scrolly">
 
     <div id="map-wrap" class="scrolly__map-wrap" aria-hidden="false">
-      <div id="map" class="scrolly__map"></div>
-      <div class="scrolly__ghost" aria-hidden="true"><span id="ghost-label">2021</span></div>
+      <div id="map" class="scrolly__map" role="application" aria-label="Map of Athens building eras. Interactive controls become available in chapter 10." tabindex="0"></div>
+      <section id="map-legend" class="map-legend" aria-labelledby="legend-title" aria-live="polite" hidden>
+        <p id="legend-title" class="map-legend__title">Built 1946–1980</p>
+        <div id="legend-swatches" class="map-legend__swatches" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div id="legend-breaks" class="map-legend__breaks" aria-hidden="true"><span>0</span><span>5</span><span>15</span><span>25</span><span>35</span><span>50%+</span></div>
+        <p id="legend-description" class="map-legend__description">Share of buildings standing at the 2021 census</p>
+      </section>
+      <p id="map-status" class="map-status" role="status" hidden></p>
+      <form id="map-controls" class="map-controls" aria-label="Explore map controls" hidden>
+        <label for="epoch-select">Built in:</label>
+        <select id="epoch-select" name="epoch">
+          <option value="p_pre1919">Before 1919</option>
+          <option value="p_1919_45">1919–1945</option>
+          <option value="p_1946_60">1946–1960</option>
+          <option value="p_1961_70">1961–1970</option>
+          <option value="p_1971_80">1971–1980</option>
+          <option value="p_1981_85">1981–1985</option>
+          <option value="p_1986_90">1986–1990</option>
+          <option value="p_1991_95">1991–1995</option>
+          <option value="p_1996_00">1996–2000</option>
+          <option value="p_2001_05">2001–2005</option>
+          <option value="p_2006_10">2006–2010</option>
+          <option value="p_2011_15">2011–2015</option>
+          <option value="p_2016_21">2016–2021</option>
+          <option value="p_undercons">Under construction</option>
+          <option value="p_1946_80" selected>1946–1980 (combined)</option>
+        </select>
+        <fieldset>
+          <legend>Layer</legend>
+          <label><input type="radio" name="layer" value="census" checked> Census</label>
+          <label><input type="radio" name="layer" value="satellite"> Satellite</label>
+          <label><input type="radio" name="layer" value="footprints"> Footprints only</label>
+        </fieldset>
+      </form>
+      <div id="map-tooltip" class="map-tooltip" role="tooltip" hidden></div>
+      <p class="map-attribution"><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> · <a href="https://openfreemap.org">OpenFreeMap</a></p>
       <div id="chapter-chip" class="scrolly__chip" aria-hidden="true">01 / 10 &middot; Athens today</div>
     </div>
 
@@ -53,7 +89,7 @@
         <div class="card">
         <p class="chapter-folio"><span>02 / 10</span><span>1833–1920</span></p>
         <h2>A small capital, big plans</h2>
-        <p>Athens became the capital of the new Greek state in 1834, when it was a town of a few thousand people below the Acropolis. The plan drawn for it the year before was ambitious. Stamatios Kleanthis and Eduard Schaubert laid out boulevards, squares, public gardens, and an archaeological park wrapping the ancient center. Within months the plan was in retreat. Landowners whose plots fell under the proposed squares protested the expropriations, the young state had no money to pay them, and in 1834 Leo von Klenze redrew the scheme at a fraction of its ambition. That first defeat set the pattern for the next century and a half. Athenian land was held in small private plots, assembling them was beyond the state’s means, and plans that needed open space lost to the owners of the ground. The city then grew slowly, a modest capital of neoclassical houses spreading out from the old town. By 1920 the wider agglomeration held about 453,000 people. The map behind this text, surveyed by German cartographers in the 1870s and 1880s, shows how little ground a century of growth had covered.</p>
+        <p>Athens became the capital of the new Greek state in 1834, when it was a town of a few thousand people below the Acropolis. The plan drawn for it the year before was ambitious. Stamatios Kleanthis and Eduard Schaubert laid out boulevards, squares, public gardens, and an archaeological park wrapping the ancient center. Within months the plan was in retreat. Landowners whose plots fell under the proposed squares protested the expropriations, the young state had no money to pay them, and in 1834 Leo von Klenze redrew the scheme at a fraction of its ambition. That first defeat set the pattern for the next century and a half. Athenian land was held in small private plots, assembling them was beyond the state’s means, and plans that needed open space lost to the owners of the ground. The city then grew slowly, a modest capital of neoclassical houses spreading out from the old town. By 1920 the wider agglomeration held about 453,000 people. Surveys made by German cartographers in the 1870s and 1880s show how little ground a century of growth had covered.</p>
         <aside class="sources"><span class="sources__label">2 / Sources</span><p>Athens Social Atlas (Kleanthis–Schaubert entry); census series via Salvati 2022; Kaupert, Karten von Attika.</p></aside>
         </div>
       </section>
@@ -72,6 +108,30 @@
         <p class="chapter-folio"><span>04 / 10</span><span>1929–1940</span></p>
         <h2>The prototype</h2>
         <p>In January 1929 Greece passed a law that let a person own a floor of a building rather than the whole of it. Law 3741/1929 recognized ownership by storeys, with the plot and the staircase held in common, and it is the legal precondition for everything that follows in this story: without title to a single apartment, a landowner could not be paid for land in finished flats. Through the 1930s, modernist architects worked out the building the new law made viable. The <i class="loanword" lang="el-Latn">polykatoikia</i>, literally the “multi-dwelling,” was a reinforced-concrete frame in the manner of Le Corbusier’s Dom-ino diagram, with columns and slabs carrying the structure, brick filling the walls, a continuous front held to the street line, and balconies across the facade. The admired early example is the Blue Polykatoikia in Exarcheia, designed by Kyriakos Panagiotakos and finished in 1933, which Le Corbusier is said to have praised when the international modernist congress passed through Athens that year. Before the war the type remained a novelty of the middle-class center, numbering in the hundreds. The prototype existed. What Athens did not yet have was a way to finance its multiplication.</p>
+        <figure class="diagram">
+          <svg viewBox="0 0 600 720" role="img" aria-labelledby="polykatoikia-title polykatoikia-desc">
+            <title id="polykatoikia-title">Section through a typical polykatoikia</title>
+            <desc id="polykatoikia-desc">A street-level shop and pilotis support five repeated concrete-frame floors, two setback floors and a roof terrace.</desc>
+            <g class="diagram__ink">
+              <path d="M62 650H544M94 650V180M506 650V180M94 592H506M94 522H506M94 452H506M94 382H506M94 312H506M94 242H506M94 180H446M132 592V650M260 592V650M388 592V650M132 242V592M260 242V592M388 242V592"/>
+              <path d="M160 180V126H446V180M220 126V78H398V126M220 78H430M430 78V60"/>
+              <path d="M104 640H248V604H104ZM276 650V604M398 650V604"/>
+            </g>
+            <g class="diagram__frame">
+              <path d="M94 592H506M94 522H506M94 452H506M94 382H506M94 312H506M94 242H506M94 180H446M160 126H446M220 78H398"/>
+            </g>
+            <g class="diagram__labels">
+              <text x="102" y="630">shops</text>
+              <text x="286" y="630">pilotis</text>
+              <text x="414" y="478">five frame floors</text>
+              <text x="168" y="158">setback 1</text>
+              <text x="228" y="108">setback 2</text>
+              <text x="438" y="72">roof terrace</text>
+              <text x="62" y="686">street</text>
+            </g>
+          </svg>
+          <figcaption>The concrete frame carries repeated floors above shops and pilotis, then steps back from the street toward a shared roof.</figcaption>
+        </figure>
         <aside class="sources"><span class="sources__label">4 / Sources</span><p>Law 3741/1929 (ΦΕΚ Α΄4); Aureli, Giudici &amp; Issaias 2012; Kalfa 2023; CoHab Athens.</p></aside>
         </div>
       </section>
@@ -82,6 +142,34 @@
         <h2>The machine</h2>
         <p>After 1950, Athens rebuilt itself through a deal struck plot by plot. The arrangement was called <i class="loanword" lang="el-Latn">antiparochi</i>, roughly “in exchange.” A landowner signed a plot over to a small contractor, who built an apartment block at their own risk and paid the owner in kind, with an agreed share of the finished flats, keeping the rest to sell. No standard split existed; every deal was negotiated. Because the owner was paid in apartments rather than cash, the transfer escaped the taxes a sale would have triggered, and because presales of the flats financed the works, banks stayed marginal throughout.</p>
         <div class="data-lockup" aria-label="Headline census finding"><strong>2 in 3</strong><span>of the buildings standing in the Municipality of Athens in 2021 were built between 1946 and 1980. ELSTAT, 2021 Buildings Census.</span></div>
+        <figure class="diagram diagram--wide">
+          <svg viewBox="0 0 700 420" role="img" aria-labelledby="antiparochi-title antiparochi-desc">
+            <title id="antiparochi-title">How antiparochi turned a plot into apartments</title>
+            <desc id="antiparochi-desc">Four panels show an owner’s plot, a no-cash contract, construction at the contractor’s risk, and the finished flats divided between owner and contractor.</desc>
+            <g class="diagram__panels">
+              <rect x="16" y="24" width="150" height="322"/><rect x="188" y="24" width="150" height="322"/><rect x="360" y="24" width="150" height="322"/><rect x="532" y="24" width="150" height="322"/>
+            </g>
+            <g class="diagram__ink">
+              <path d="M46 268H138M60 268V198L92 168L124 198V268M48 292H136"/>
+              <path d="M220 126H306V266H220ZM234 154H292M234 178H292M234 202H278"/>
+              <path d="M390 282V132M476 282V132M390 246H476M390 210H476M390 174H476M390 138H476M406 282V138M438 282V138M470 282V138"/>
+              <path d="M558 282V102H656V282M558 246H656M558 210H656M558 174H656M558 138H656M582 282V102M632 282V102"/>
+              <path d="M166 185H188M338 185H360M510 185H532"/>
+              <path d="M180 178L188 185L180 192M352 178L360 185L352 192M524 178L532 185L524 192"/>
+            </g>
+            <g class="diagram__accent">
+              <path d="M560 138H654V208H560Z"/>
+              <path d="M560 210H654V280H560Z" class="diagram__accent--pale"/>
+            </g>
+            <g class="diagram__labels">
+              <text x="32" y="50">1 / owner’s plot</text><text x="38" y="326">land, no cash</text>
+              <text x="204" y="50">2 / contract</text><text x="216" y="326">flats set the split</text>
+              <text x="376" y="50">3 / construction</text><text x="372" y="326">contractor carries risk</text>
+              <text x="548" y="50">4 / finished block</text><text x="570" y="164">owner</text><text x="570" y="238">contractor</text><text x="552" y="326">apartments in kind</text>
+            </g>
+          </svg>
+          <figcaption>No purchase price changes hands: the owner contributes the plot, the contractor carries construction risk, and the completed flats are divided in kind.</figcaption>
+        </figure>
         <p>Alongside antiparochi ran family self-building, dominant on the periphery, often ahead of the official plans and legalized afterward by repeated amnesties. Together they transformed the city. Around 1950 Athens had fewer than a thousand buildings of five storeys or more; by 1980 it had about 35,000. The builders were not corporations: in an archival sample of building permits, 940 separate construction firms appear, averaging 1.3 buildings each.</p>
         <p>One number in the folklore needs correcting before we go on. It is often said that 90 percent of Athens was built through antiparochi, and that figure traces to no dataset; the best archival estimate we have found attributes about 45 percent of apartment permits from 1955 to 1970 to antiparochi, explicitly as a lower bound, with self-building accounting for much of the rest. As the map sweeps across the postwar decades, the census is counting what those channels left standing. Of the buildings standing in Greece today, nearly half date from 1946 to 1980; in the Municipality of Athens, two in three.</p>
         <aside class="sources"><span class="sources__label">5 / Sources</span><p>CoHab Athens (“Land for Flat”); Kalfa 2023; ELSTAT 2011 &amp; 2021 Buildings Censuses; Karadimitriou, Maloutas &amp; Arapoglou 2021.</p></aside>
@@ -110,7 +198,7 @@
         <div class="card">
         <p class="chapter-folio"><span>08 / 10</span><span>1980–2008</span></p>
         <h2>The edges</h2>
-        <p>By 1980 the basin was filling up and growth moved to the edges. The satellite record takes over on the map here. From 1975 onward, the Copernicus layer registers built-up land in five-year steps, and it shows the margins advancing while the already-built center barely changes. The eastern plain of Mesogeia stayed largely agricultural into the mid-1990s and then urbanized around the new airport at Spata, opened in 2001, and the Attiki Odos tollway, completed in 2004, the same year the Olympics brought the metro extension, the suburban rail and the tram. Eastern Attica’s share of the conurbation’s population rose from about 5 percent in 1951 to about 15 percent in 2021. Then the financial crisis stopped construction almost entirely. Residential building permits in Greece fell 96 percent between 2006 and 2016, from roughly 40,000 a year to under 1,500. The expansion you have just watched has barely moved since.</p>
+        <p>By 1980 the basin was filling up and growth moved to the edges. The satellite record takes over on the map here. Four cumulative Copernicus snapshots — 1975, 1990, 2005 and 2020 — show the margins advancing while the already-built center barely changes. The eastern plain of Mesogeia stayed largely agricultural into the mid-1990s and then urbanized around the new airport at Spata, opened in 2001, and the Attiki Odos tollway, completed in 2004, the same year the Olympics brought the metro extension, the suburban rail and the tram. Eastern Attica’s share of the conurbation’s population rose from about 5 percent in 1951 to about 15 percent in 2021. Then the financial crisis stopped construction almost entirely. Residential building permits in Greece fell 96 percent between 2006 and 2016, from roughly 40,000 a year to under 1,500. The expansion you have just watched has barely moved since.</p>
         <aside class="sources"><span class="sources__label">8 / Sources</span><p>Copernicus GHSL R2023; Rontos et al. 2024; Karadimitriou, Maloutas &amp; Arapoglou 2021; Beriatos &amp; Gospodini 2004.</p></aside>
         </div>
       </section>
@@ -128,8 +216,8 @@
         <div class="card">
         <p class="chapter-folio"><span>10 / 10</span><span>Explore</span></p>
         <h2>Explore</h2>
-        <p>The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. The building footprints drawn above the colors are today’s buildings, included to show density; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth layer and the green-space layer switch on from the panel, each labeled with its dates and limits. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the <a href="#sources">sources and methods page</a> below.</p>
-        <aside class="sources"><span class="sources__label">10 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL and Urban Atlas.</p></aside>
+        <p>The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. The building footprints drawn above the colors are today’s buildings, included to show density; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth layer can be switched on from the panel; the green-space layer remains unavailable while its Urban Atlas licence is checked. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the <a href="#sources">sources and methods page</a> below.</p>
+        <aside class="sources"><span class="sources__label">10 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.</p></aside>
         </div>
       </section>
 

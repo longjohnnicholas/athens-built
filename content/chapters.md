@@ -14,15 +14,15 @@ Stand on a street corner anywhere in the Athens basin and look up. The same buil
 
 ## 2. A small capital, big plans (1833–1920)
 
-**Map state:** Kaupert-era historic map extent; modern layers off.
+**Map state:** historic ground tint with the Attica outline; the Kaupert raster remains unavailable pending its licence check.
 
-Athens became the capital of the new Greek state in 1834, when it was a town of a few thousand people below the Acropolis. The plan drawn for it the year before was ambitious. Stamatios Kleanthis and Eduard Schaubert laid out boulevards, squares, public gardens, and an archaeological park wrapping the ancient center. Within months the plan was in retreat. Landowners whose plots fell under the proposed squares protested the expropriations, the young state had no money to pay them, and in 1834 Leo von Klenze redrew the scheme at a fraction of its ambition. That first defeat set the pattern for the next century and a half. Athenian land was held in small private plots, assembling them was beyond the state's means, and plans that needed open space lost to the owners of the ground. The city then grew slowly, a modest capital of neoclassical houses spreading out from the old town. By 1920 the wider agglomeration held about 453,000 people. The map behind this text, surveyed by German cartographers in the 1870s and 1880s, shows how little ground a century of growth had covered.
+Athens became the capital of the new Greek state in 1834, when it was a town of a few thousand people below the Acropolis. The plan drawn for it the year before was ambitious. Stamatios Kleanthis and Eduard Schaubert laid out boulevards, squares, public gardens, and an archaeological park wrapping the ancient center. Within months the plan was in retreat. Landowners whose plots fell under the proposed squares protested the expropriations, the young state had no money to pay them, and in 1834 Leo von Klenze redrew the scheme at a fraction of its ambition. That first defeat set the pattern for the next century and a half. Athenian land was held in small private plots, assembling them was beyond the state's means, and plans that needed open space lost to the owners of the ground. The city then grew slowly, a modest capital of neoclassical houses spreading out from the old town. By 1920 the wider agglomeration held about 453,000 people. Surveys made by German cartographers in the 1870s and 1880s show how little ground a century of growth had covered.
 
 *Sources: Athens Social Atlas (Kleanthis–Schaubert entry); census series via Salvati 2022; Kaupert, Karten von Attika.*
 
 ## 3. The city doubles in eight years (1922–28)
 
-**Map state:** refugee settlement quarters highlighted on the periphery (Nea Ionia, Kaisariani, Vyronas, Nea Kokkinia).
+**Map state:** refugee settlement municipalities highlighted on the periphery (Nea Ionia, Kaisariani, Vyronas, and Nikaia, which includes historic Nea Kokkinia).
 
 In 1922 the Greek army was defeated in Asia Minor, and in the forced population exchange that followed, a country of roughly five million absorbed about 1.2 million refugees. More than 220,000 of them settled in Athens and Piraeus. The agglomeration went from 453,000 people in 1920 to 802,000 in 1928; the city nearly doubled in eight years. The Refugee Settlement Commission, set up in 1923 under the League of Nations, built Nea Ionia, Kaisariani, Vyronas, Nea Kokkinia and the rest of the quarters now lighting up on the map, sited deliberately one to four kilometers outside the built-up city. In several of them, refugees were nearly the entire population. The influx drew the social map Athens still lives with. The new belt became the working-class periphery, poor and densely packed, and its housing was never adequate. Families doubled up in small state-built houses and added rooms themselves for decades. The demand that would later power the postwar boom accumulated here, on the edge of a city that had not planned for it.
 
@@ -30,7 +30,7 @@ In 1922 the Greek army was defeated in Asia Minor, and in the forced population 
 
 ## 4. The prototype (1929–40)
 
-**Map state:** interwar city extent; marker on the Blue Polykatoikia, Exarcheia; annotated section diagram of the type beside the text.
+**Map state:** center camera over interwar Athens; annotated section diagram of the polykatoikia beside the text.
 
 In January 1929 Greece passed a law that let a person own a floor of a building rather than the whole of it. Law 3741/1929 recognized ownership by storeys, with the plot and the staircase held in common, and it is the legal precondition for everything that follows in this story: without title to a single apartment, a landowner could not be paid for land in finished flats. Through the 1930s, modernist architects worked out the building the new law made viable. The polykatoikia, literally the "multi-dwelling," was a reinforced-concrete frame in the manner of Le Corbusier's Dom-ino diagram, with columns and slabs carrying the structure, brick filling the walls, a continuous front held to the street line, and balconies across the facade. The admired early example is the Blue Polykatoikia in Exarcheia, designed by Kyriakos Panagiotakos and finished in 1933, which Le Corbusier is said to have praised when the international modernist congress passed through Athens that year. Before the war the type remained a novelty of the middle-class center, numbering in the hundreds. The prototype existed. What Athens did not yet have was a way to finance its multiplication.
 
@@ -46,7 +46,7 @@ After 1950, Athens rebuilt itself through a deal struck plot by plot. The arrang
 
 ## 6. What it replaced
 
-**Map state:** core-vs-periphery moment; historic core outlined; epoch layer on the center; Plaka highlighted.
+**Map state:** tight camera over the historic core; no Plaka polygon is drawn because no suitable geometry is available.
 
 The boom did not only fill empty land. In the center it replaced a city that was already there, house by house. Nineteenth-century Athens had been built in neoclassical stone and stucco; of the buildings put up between 1833 and 1900, an estimated 10 to 20 percent survive today. The estimate converges across studies, though no official count was ever made. The demolition ran from the late 1950s through the 1970s and required no government program: a neoclassical house fell whenever the flats its plot could carry were worth more than the house itself, which, as permitted heights rose decade by decade, they increasingly were. Heritage protection for anything built after 1830 was applied inconsistently until after 1974. Plaka is the exception that shows the mechanism. The quarter under the Acropolis survived because a 1973 study and the protective regime that followed in 1979 made redevelopment there illegal, interrupting antiparochi at the decisive moment; it is now the only continuous piece of the nineteenth-century city. This is why the historic core is the subtlest area on the map. Its streets were urbanized before 1920, but its buildings date from the rebuild: central Athens is a 1960s city standing on an 1830s street plan.
 
@@ -54,7 +54,7 @@ The boom did not only fill empty land. In the center it replaced a city that was
 
 ## 7. Where the parks went
 
-**Map state:** green-space layer (Urban Atlas Green Urban Areas) with on-screen date and minimum-mapping-unit caveat.
+**Map state:** plain ground; the on-screen status notes that the green-space layer is pending the Urban Atlas licence check.
 
 The mechanism that rebuilt the housing also explains the missing parks. From the 1833 plan onward, every scheme that reserved Athenian land for public space met the same obstacle. The land was already owned in small plots, and expropriation failed or was cut back. When the postwar boom came, redevelopment happened one plot at a time, and a process that never assembled land beyond a single building site had no instrument for producing a park. We can measure the deficit today. In a 2026 study ranking 862 European cities on green access, Athens sits near the bottom: 3.3 percent of its residents have three visible trees from home, 30 percent tree canopy in their neighborhood, and a green space within 300 meters, the benchmark the study applies. Tree cover in Athens runs around a third of the average for EU capitals. The green Athenians do have lies mostly at the edges of the map, on Parnitha, Hymettus and Penteli and along the coast, rather than inside the fabric. The mountains and the coast serve as the city's green reserve; the basin itself holds almost none.
 
@@ -62,9 +62,9 @@ The mechanism that rebuilt the housing also explains the missing parks. From the
 
 ## 8. The edges (1980–2008)
 
-**Map state:** GHSL built-up epochs animate 1975 → 2020; camera widens to Mesogeia; airport and Attiki Odos drawn.
+**Map state:** GHSL cumulative built-up land sweeps 1990 → 2005 → 2020; camera widens to Mesogeia.
 
-By 1980 the basin was filling up and growth moved to the edges. The satellite record takes over on the map here. From 1975 onward, the Copernicus layer registers built-up land in five-year steps, and it shows the margins advancing while the already-built center barely changes. The eastern plain of Mesogeia stayed largely agricultural into the mid-1990s and then urbanized around the new airport at Spata, opened in 2001, and the Attiki Odos tollway, completed in 2004, the same year the Olympics brought the metro extension, the suburban rail and the tram. Eastern Attica's share of the conurbation's population rose from about 5 percent in 1951 to about 15 percent in 2021. Then the financial crisis stopped construction almost entirely. Residential building permits in Greece fell 96 percent between 2006 and 2016, from roughly 40,000 a year to under 1,500. The expansion you have just watched has barely moved since.
+By 1980 the basin was filling up and growth moved to the edges. The satellite record takes over on the map here. Four cumulative Copernicus snapshots — 1975, 1990, 2005, and 2020 — show the margins advancing while the already-built center barely changes. The eastern plain of Mesogeia stayed largely agricultural into the mid-1990s and then urbanized around the new airport at Spata, opened in 2001, and the Attiki Odos tollway, completed in 2004, the same year the Olympics brought the metro extension, the suburban rail and the tram. Eastern Attica's share of the conurbation's population rose from about 5 percent in 1951 to about 15 percent in 2021. Then the financial crisis stopped construction almost entirely. Residential building permits in Greece fell 96 percent between 2006 and 2016, from roughly 40,000 a year to under 1,500. The expansion you have just watched has barely moved since.
 
 *Sources: Copernicus GHSL R2023; Rontos et al. 2024; Karadimitriou, Maloutas & Arapoglou 2021; Beriatos & Gospodini 2004.*
 
@@ -78,11 +78,11 @@ This is the view we opened with, now with the construction dates showing. The sa
 
 ## 10. Explore
 
-**Map state:** free camera; epoch dropdown active; layer switcher (footprints, GHSL, green space); histogram joins here if its gate passes.
+**Map state:** free camera; epoch dropdown active; layer switcher (census, GHSL, footprints only); green space remains unavailable pending the Urban Atlas licence check.
 
-The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. The building footprints drawn above the colors are today's buildings, included to show density; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth layer and the green-space layer switch on from the panel, each labeled with its dates and limits. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the sources and methods page linked below.
+The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. The building footprints drawn above the colors are today's buildings, included to show density; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth layer can be switched on from the panel; the green-space layer remains unavailable while its Urban Atlas licence is checked. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the sources and methods page linked below.
 
-*Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL and Urban Atlas.*
+*Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.*
 
 ---
 
