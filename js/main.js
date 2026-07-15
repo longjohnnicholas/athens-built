@@ -644,6 +644,12 @@
     var state = CHAPTERS[chapter];
     if (!state) return;
     currentChapter = chapter;
+    document.querySelectorAll(".step").forEach(function (step) {
+      step.classList.toggle(
+        "is-active",
+        step.getAttribute("data-chapter") === chapter
+      );
+    });
     chip.textContent = state.chip;
     chip.hidden = chapter === "10";
     controls.hidden = chapter !== "10";

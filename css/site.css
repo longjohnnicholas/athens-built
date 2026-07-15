@@ -473,6 +473,125 @@ a:hover {
   display: none;
 }
 
+.fact-panel {
+  position: fixed;
+  top: clamp(4.5rem, 9vh, 6.25rem);
+  left: calc(var(--rail-margin) + var(--card-width) + 1.5rem);
+  z-index: 13;
+  width: min(
+    27rem,
+    calc(100vw - var(--rail-margin) - var(--card-width) - 5rem)
+  );
+  min-width: 13rem;
+  margin: 0;
+  padding: 1rem 1.1rem 0.95rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--ink-2);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 400ms ease, visibility 0s linear 400ms;
+}
+
+.step.is-active .fact-panel {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.fact-panel__figure {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.65rem, 4.3vw, 4.4rem);
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+.fact-panel--chart .fact-panel__figure {
+  font-size: clamp(2.15rem, 3.1vw, 3.35rem);
+}
+
+.fact-panel__caption,
+.fact-panel__note {
+  margin: 0;
+  font-family: var(--font-text);
+}
+
+.fact-panel__caption {
+  margin-top: 0.6rem;
+  color: var(--ink-2);
+  font-size: 0.77rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.fact-panel__note {
+  margin-top: 0.42rem;
+  padding-top: 0.42rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.68rem;
+  line-height: 1.42;
+}
+
+.fact-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.7rem;
+  overflow: visible;
+}
+
+.fact-chart__grid {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.fact-chart__grid .fact-chart__baseline {
+  stroke: var(--ink-2);
+}
+
+.fact-chart__bars rect {
+  fill: var(--ink-2);
+}
+
+.fact-chart__bars .fact-chart__bar--accent {
+  fill: var(--accent-2);
+}
+
+.fact-chart__values,
+.fact-chart__labels {
+  fill: var(--ink-2);
+  font-family: var(--font-text);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-anchor: middle;
+}
+
+.fact-chart__values {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.fact-chart__labels {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.fact-chart__labels--compact {
+  font-size: 8px;
+}
+
 .data-lockup {
   display: grid;
   /* wide enough that "2 in 3" sets on one line at 3.75rem (measured 152.3px) */
@@ -646,6 +765,17 @@ footer {
   .map-legend[data-layer="heights"] {
     width: calc(100vw - var(--rail-margin) - 27rem);
   }
+
+  .fact-panel {
+    width: calc(100vw - var(--rail-margin) - 27rem);
+    min-width: 0;
+    padding-inline: 0.8rem;
+  }
+
+  .fact-panel__figure,
+  .fact-panel--chart .fact-panel__figure {
+    font-size: clamp(1.7rem, 4vw, 2.35rem);
+  }
 }
 
 @media (max-width: 700px) {
@@ -708,6 +838,32 @@ footer {
   .map-static {
     display: block;
     margin: 0 0 1.35rem;
+  }
+
+  .fact-panel,
+  .step.is-active .fact-panel {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 1.35rem;
+    padding: 1rem 0 0.95rem;
+    background: transparent;
+    border-width: 1px 0;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition: none;
+  }
+
+  .fact-panel__figure,
+  .fact-panel--chart .fact-panel__figure {
+    font-size: clamp(2.45rem, 13vw, 3.65rem);
+    white-space: normal;
+  }
+
+  .fact-chart {
+    max-width: 25rem;
+    margin-inline: auto;
   }
 
   .map-static img {

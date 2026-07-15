@@ -78,6 +78,12 @@ Chapter 2 binds the traced 1894 built-up extent from the Baedeker Athens and Pir
 
 The 1908 candidate is held, not rejected, at 98.57% pending the owner's Gate C decision. It must not be shipped or clipped in the interim: chapter 3 remains unchanged, and chapter 8's first GHSL state states that no comparable observation exists between 1894 and 1975.
 
+### Addendum — map-side fact panels (2026-07-15)
+
+Chapters 2–9 bind a single flat fact panel to chapter state in the upper part of the free map field. The component uses `--card`, a 1px `--line` border, no radius or shadow, a large GFS Didot figure, Commissioner caption text, and—where comparison is the point—an inline-SVG micro bar chart. Charts use flat `--ink-2` bars, `--line` reference rules, a single `--ink-2` baseline, direct value labels, and no axes; Athens (or Greece in the social-rental comparison) alone uses `--accent-2`. The panel shares the map overlay's 400ms opacity discipline and becomes instant under reduced motion. Its desktop bounds begin 1.5rem to the right of the card rail, remain in the upper field, and do not enter the bottom legend/chip zones or the top-right control zone.
+
+The same panel is one real DOM node inside its chapter card, immediately below the folio. Above 700px it is fixed into the map field and only the active chapter's panel is visible; at 700px and below it returns to static flow, remains visible in every applicable card, and uses edge-only borders against `--paper`. Chapters 1 and 10 have no panel. This single-node binding prevents desktop/mobile copy drift and ensures a chapter's in-card data lockup is never duplicated by the panel.
+
 ## 3. Typography
 
 | Role | Face | Size / weight |
