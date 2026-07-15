@@ -64,8 +64,8 @@
   var CHAPTERS = {
     "1": {
       chip: "01 / 10 · Athens today",
-      center: [23.735, 37.99],
-      zoom: 10.25,
+      center: [23.715, 37.97],
+      zoom: 11.2,
       bearing: HEIGHT_BEARING,
       pitch: HEIGHT_PITCH,
       layer: "heights3d",
