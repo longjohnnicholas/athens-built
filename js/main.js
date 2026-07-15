@@ -65,8 +65,11 @@
     "1": {
       chip: "01 / 10 · Athens today",
       center: [23.735, 37.99],
-      zoom: 10.4,
-      layer: "heights"
+      zoom: 10.25,
+      bearing: HEIGHT_BEARING,
+      pitch: HEIGHT_PITCH,
+      layer: "heights3d",
+      reducedMotionLayer: "heights"
     },
     "2": {
       chip: "02 / 10 · 1833–1920",
@@ -557,13 +560,13 @@
         setCensusEpoch("p_1946_80");
         setActiveLayer("census");
         chip.textContent = "09 / 10 · 1946–1980";
-        if (leaving3d && moveForStateChange) moveCamera(CHAPTERS[chapter], false);
+        if (leaving3d && moveForStateChange) moveCamera(CHAPTERS[chapter]);
       } else {
         var entering3d = activeMapLayer !== "heights3d";
         setActiveLayer("heights3d");
         chip.textContent =
           "09 / 10 · Average height · 2012 · ×" + HEIGHT_EXAGGERATION;
-        if (entering3d && moveForStateChange) moveCamera(CHAPTERS[chapter], false);
+        if (entering3d && moveForStateChange) moveCamera(CHAPTERS[chapter]);
       }
     }
   }
@@ -616,45 +619,38 @@
     }
   }
 
-  function moveCamera(state, settle) {
+  function moveCamera(state) {
     if (!mapStyleReady || !map) return;
     var use3d = activeMapLayer === "heights3d";
+    var bearing = 0;
+    var pitch = 0;
+    if (use3d) {
+      bearing = typeof state.bearing === "number" ? state.bearing : HEIGHT_BEARING;
+      pitch = typeof state.pitch === "number" ? state.pitch : HEIGHT_PITCH;
+    }
     var options = {
       center: state.center,
       zoom: state.zoom,
-      bearing: use3d ? HEIGHT_BEARING : 0,
-      pitch: use3d ? HEIGHT_PITCH : 0,
+      bearing: bearing,
+      pitch: pitch,
       padding: cameraPadding()
     };
+    var flatteningOpening = currentChapter === "2" && map.getPitch() > 0;
     map.stop();
-
-    if (settle) {
-      if (prefersReducedMotion) {
-        options.zoom = 11.2;
-        map.jumpTo(options);
-      } else {
-        map.jumpTo(options);
-        map.easeTo({
-          center: state.center,
-          zoom: 11.2,
-          bearing: 0,
-          pitch: 0,
-          padding: cameraPadding(),
-          duration: 1400,
-          easing: function (t) {
-            return t * (2 - t);
-          }
-        });
-      }
-      return;
-    }
 
     if (prefersReducedMotion) {
       map.jumpTo(options);
     } else {
       options.duration = 1400;
       options.essential = false;
-      map.flyTo(options);
+      if (flatteningOpening) {
+        options.easing = function (t) {
+          return t * (2 - t);
+        };
+        map.easeTo(options);
+      } else {
+        map.flyTo(options);
+      }
     }
   }
 
@@ -691,7 +687,9 @@
       );
       setActiveLayer(selectedLayer ? selectedLayer.value : "census");
     } else {
-      setActiveLayer(state.layer);
+      var chapterLayer = prefersReducedMotion && state.reducedMotionLayer ?
+        state.reducedMotionLayer : state.layer;
+      setActiveLayer(chapterLayer);
     }
 
     if (map) {
@@ -703,7 +701,7 @@
         setMapInteraction(false);
       }
     }
-    if (move) moveCamera(state, chapter === "1");
+    if (move) moveCamera(state);
   }
 
   function setChapterState(number, options) {

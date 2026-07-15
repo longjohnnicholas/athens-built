@@ -90,6 +90,8 @@ The extrusion is an aggregate surface, never a building model. It is derived fro
 
 `height-extrusion` uses the same slate bands and breaks as the flat carpet, with extrusion height `h × 6`, flat band color on the whole prism, pitch 58°, and bearing −17°. Chapter 9 has two symmetric progress states: the 1946–80 census view first, then the extrusion. Its 3D legend begins, verbatim, “A plateau, not a skyline: the same five-to-seven-storey carpet across the basin.” and follows with “Urban Atlas 2012 · 150 m cells · ×6 vertical exaggeration.” Explore retains `Heights` for the 10 m flat raster and adds `Heights 3D`; rotation and pitch controls are enabled only for the 3D selection. Leaving 3D returns bearing and pitch to zero. Reduced motion makes both layer and camera changes instant.
 
+Chapter 1 opens on the same extrusion at its basin camera (pitch 58°, bearing −17°, ×6 legend visible), with the flat 10 m carpet as its reduced-motion state and an eased return to pitch 0° on entry to chapter 2.
+
 ## 3. Typography
 
 | Role | Face | Size / weight |
