@@ -16,6 +16,10 @@ var main = fs.readFileSync(
   path.join(__dirname, "..", "js", "main.js"),
   "utf8"
 );
+var css = fs.readFileSync(
+  path.join(__dirname, "..", "css", "site.css"),
+  "utf8"
+);
 
 var requiredHeightCopy =
   "The height is the law and the arithmetic. The sameness of the look is " +
@@ -54,6 +58,11 @@ assert.match(html, /10 \/ 10<\/span><span>Explore<\/span>/);
 assert.match(html, /id="map-interaction-hint"/);
 assert.match(html, /value="heights3d" checked/);
 assert.doesNotMatch(html, /value="census" checked/);
+assert.match(html, /fact-panel--range/);
+assert.match(html, /diagram--map-overlay/);
+assert.match(html, /From an owner’s plot to a finished block/);
+assert.match(css, /\.fact-panel--range \.fact-panel__figure/);
+assert.match(css, /\.step\.is-active \.diagram--map-overlay/);
 assert.match(
   main,
   /controls\.hidden = chapter !== "1" && chapter !== "10"/
