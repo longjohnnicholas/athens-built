@@ -4,17 +4,9 @@
 
 ---
 
-## 1. Explore
+## 1. The sameness
 
-**Map state:** free camera, opening on the oblique 2012 Urban Atlas average-height surface at ×6 vertical exaggeration; layer switcher visible from the start; epoch dropdown active for Census only.
-
-The map is free from the start. Drag the height map to turn and tilt the basin, or use the panel to choose another layer. For census periods, each area is shaded by the share of its buildings that were standing in 2021 and date from that period. Double-clicking zooms in to today's building footprints, but none has an individual construction date because Greece publishes no building-level dates. The panel also opens the satellite growth, green-space and flat height views. The sources and methods page records what each layer can and cannot show.
-
-*Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.*
-
-## 2. The sameness
-
-**Map state:** oblique 3D view of the 2012 Urban Atlas 150 m average-height surface at ×6 vertical exaggeration, held across the central basin; reduced motion keeps the static 3D view and manual exploration but disables automatic motion.
+**Map state:** oblique 3D view of the 2012 Urban Atlas 150 m average-height surface at ×6 vertical exaggeration, opening across the central basin; layer switcher visible from the start; reduced motion keeps the static 3D view and manual exploration but disables automatic motion.
 
 Stand on a street corner anywhere in the Athens basin and look up. The same building looks back: a concrete frame of five, six, seven storeys, balconies running the width of the facade, the top floors stepping back against the sky. Ride a bus from Patisia to Kallithea to Peristeri and the type repeats, with small variations, for an hour in any direction. Athens is among the oldest cities in Europe, and almost nothing standing in it is old. Of the buildings standing in the Municipality of Athens at the 2021 census, two in three were built between 1946 and 1980. Below, we tell the story of how a small neoclassical capital, swollen first by refugees and then by villagers, rebuilt itself block by block into the concrete city on your screen, without a master plan, with almost no bank credit, and with barely any state construction.
 
@@ -22,7 +14,7 @@ The height is the law and the arithmetic. The sameness of the look is something 
 
 *Sources: ELSTAT 2021 Buildings Census, Table 6; Karadimitriou, Maloutas & Arapoglou 2021.*
 
-## 3. A small capital, big plans (1833–1920)
+## 2. A small capital, big plans (1833–1920)
 
 **Map state:** historic ground tint with the traced 1894 built-up extent from the Baedeker Athens and Piraeus plans (after Kaupert's survey).
 
@@ -30,7 +22,7 @@ Athens became the capital of the new Greek state in 1834, when it was a town of 
 
 *Sources: Athens Social Atlas (Kleanthis–Schaubert entry); census series via Salvati 2022; Kaupert, Karten von Attika.*
 
-## 4. The city doubles in eight years (1922–28)
+## 3. The city doubles in eight years (1922–28)
 
 **Map state:** refugee settlement municipalities highlighted on the periphery (Nea Ionia, Kaisariani, Vyronas, and Nikaia, which includes historic Nea Kokkinia).
 
@@ -38,7 +30,7 @@ In 1922 the Greek army was defeated in Asia Minor, and in the forced population 
 
 *Sources: Kapokakis, Kritikos & Anastasiadou 2023; Athens Social Atlas (refugee settlement entries); Leontidou 1990.*
 
-## 5. The prototype (1929–40)
+## 4. The prototype (1929–40)
 
 **Map state:** center camera over interwar Athens; annotated section diagram of the polykatoikia beside the text.
 
@@ -46,7 +38,7 @@ In January 1929 Greece passed a law that let a person own a floor of a building 
 
 *Sources: Law 3741/1929 (ΦΕΚ Α΄4); Aureli, Giudici & Issaias 2012; Kalfa 2023; CoHab Athens; Marmaras 1991 (via CoHab Athens).*
 
-## 6. The machine (1950–80)
+## 5. The machine (1950–80)
 
 **Map state:** animated antiparochi diagram (plot → contractor → flats in kind); epoch layer sweeps 1946–60 → 1961–70 → 1971–80.
 
@@ -58,7 +50,7 @@ When the junta raised the allowances in 1968 it did so everywhere at once, mostl
 
 *Sources: CoHab Athens ("Land for Flat"); Kalfa 2023; ELSTAT 2011 & 2021 Buildings Censuses; Karadimitriou, Maloutas & Arapoglou 2021; GOK 1955 (RD 9/30.8.1955, arts. 16 & 29); EL 395/1968.*
 
-## 7. What it replaced
+## 6. What it replaced
 
 **Map state:** tight camera over the historic core; no Plaka polygon is drawn because no suitable geometry is available.
 
@@ -66,7 +58,7 @@ The boom did not only fill empty land. In the center it replaced a city that was
 
 *Sources: Karatzas 2024; Athens Social Atlas (Plaka entry); Kalfa 2023.*
 
-## 8. Where the parks went
+## 7. Where the parks went
 
 **Map state:** Urban Atlas 2018 Green urban areas, with the Street Tree Layer as supporting texture.
 
@@ -74,7 +66,7 @@ The mechanism that rebuilt the housing also explains the missing parks. From the
 
 *Sources: JRC / Nature Communications 2026 (3-30-300 study); EEA tree-cover data; Athens Social Atlas (Kleanthis–Schaubert entry).*
 
-## 9. The edges (1980–2008)
+## 8. The edges (1980–2008)
 
 **Map state:** GHSL cumulative built-up land sweeps 1990 → 2005 → 2020; camera widens to Mesogeia.
 
@@ -82,7 +74,7 @@ By 1980 the basin was filling up and growth moved to the edges. The satellite re
 
 *Sources: Copernicus GHSL R2023; Rontos et al. 2024; Karadimitriou, Maloutas & Arapoglou 2021; Beriatos & Gospodini 2004.*
 
-## 10. The verdict
+## 9. The verdict
 
 **Map state:** return to the opening camera; first half shows the 1946–1980 community choropleth, second half the 2012 building-height carpet.
 
@@ -91,6 +83,14 @@ This is the view we opened with, now with the construction dates showing. The sa
     2 in 3 — of the buildings in the Municipality of Athens with three or more upper floors were built between 1946 and 1980. ELSTAT 2021 Buildings Census, Table 07A.
 
 *Sources: Allen, Barlow, Leal, Maloutas & Padovani 2004; Emmanuel 2015; Housing Europe 2025 / Eurostat; ELSTAT 2021 Buildings Census.*
+
+## 10. Explore
+
+**Map state:** free camera; epoch dropdown active for Census only; layer switcher (Census, Heights, Satellite, Green, Footprints only).
+
+Use the map controls to compare construction periods and layers. Census colors show the share of buildings still standing in 2021 that date from the selected period; they do not count every building ever built. Double-click to zoom in to today's building footprints. Greece publishes no construction date for an individual building, so those footprints provide location and shape only. The panel also opens satellite growth, green space and both height views. The sources and methods page records the date and limits of every layer.
+
+*Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.*
 
 ---
 

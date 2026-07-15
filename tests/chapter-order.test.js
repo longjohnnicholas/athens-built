@@ -49,11 +49,19 @@ sections.forEach(function (section, index) {
   assert.equal(section[2], expected);
 });
 
-assert.match(html, /01 \/ 10<\/span><span>Explore<\/span>/);
+assert.match(html, /01 \/ 10<\/span><span>Athens today<\/span>/);
+assert.match(html, /10 \/ 10<\/span><span>Explore<\/span>/);
+assert.match(html, /id="map-interaction-hint"/);
 assert.match(html, /value="heights3d" checked/);
 assert.doesNotMatch(html, /value="census" checked/);
-assert.match(main, /controls\.hidden = chapter !== "1"/);
-assert.match(main, /currentChapter !== "1"/);
+assert.match(
+  main,
+  /controls\.hidden = chapter !== "1" && chapter !== "10"/
+);
+assert.match(
+  main,
+  /currentChapter !== "1" && currentChapter !== "10"/
+);
 
 [html, chapters].forEach(function (text) {
   assert.ok(text.includes(requiredHeightCopy));

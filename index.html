@@ -24,9 +24,9 @@
   </div>
   <p class="eyebrow hero-kicker">A map-driven explainer</p>
   <h1>How postwar<br class="desktop-break"> Athens was built</h1>
-  <p class="hero-tagline">Of the buildings standing in central Athens today, two in three went up between&nbsp;1946 and&nbsp;1980. One map and nine short chapters explain why the city looks the way it does.</p>
+  <p class="hero-tagline">Of the buildings standing in central Athens today, two in three went up between&nbsp;1946 and&nbsp;1980. Nine short chapters and one map explain why the city looks the way it does.</p>
   <p class="hero-credit">Built on the 2021 Buildings Census (ELSTAT), read at municipality level.</p>
-  <a class="hero-scrollcue" href="#chapter-1">Explore the map &darr;</a>
+  <a class="hero-scrollcue" href="#chapter-1">Begin the story &darr;</a>
 </header>
 
 <main id="main-content">
@@ -34,7 +34,7 @@
   <div class="scrolly">
 
     <div id="map-wrap" class="scrolly__map-wrap" aria-hidden="false">
-      <div id="map" class="scrolly__map" role="application" aria-label="Interactive map of Athens building eras. Use the opening controls to explore the data; drag the 3D height view to rotate and tilt it." tabindex="0"></div>
+      <div id="map" class="scrolly__map" role="application" aria-label="Interactive map of Athens building eras. The opening 3D height view and chapter 10 are interactive." tabindex="0"></div>
       <section id="map-legend" class="map-legend" aria-labelledby="legend-title" aria-live="polite" hidden>
         <p id="legend-title" class="map-legend__title">Built 1946–1980</p>
         <div id="legend-swatches" class="map-legend__swatches" aria-hidden="true">
@@ -72,37 +72,28 @@
           <label><input type="radio" name="layer" value="footprints"> Footprints only</label>
         </fieldset>
       </form>
+      <p id="map-interaction-hint" class="map-interaction-hint">Drag to turn and tilt · double-click to zoom · choose a layer ↗</p>
       <div id="map-tooltip" class="map-tooltip" role="tooltip" hidden></div>
       <p class="map-attribution"><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> · <a href="https://openfreemap.org">OpenFreeMap</a></p>
-      <div id="chapter-chip" class="scrolly__chip" aria-hidden="true" hidden>01 / 10 &middot; Explore</div>
+      <div id="chapter-chip" class="scrolly__chip" aria-hidden="true">01 / 10 &middot; Athens today</div>
     </div>
 
     <div class="scrolly__steps">
 
       <section class="step prose" id="chapter-1" data-chapter="1" tabindex="-1">
         <div class="card">
-        <p class="chapter-folio"><span>01 / 10</span><span>Explore</span></p>
-        <figure class="map-static"><img src="assets/static/ch01.png" width="780" height="975" loading="lazy" alt="Static starting view of the interactive map showing average building heights across Athens."><figcaption>Urban Atlas 2012 · 150 m cells · ×6 vertical exaggeration; this phone figure is static.</figcaption></figure>
-        <h2>Explore</h2>
-        <p>The map is free from the start. Drag the height map to turn and tilt the basin, or use the panel to choose another layer. For census periods, each area is shaded by the share of its buildings that were standing in 2021 and date from that period. Double-clicking zooms in to today’s building footprints, but none has an individual construction date because Greece publishes no building-level dates. The panel also opens the satellite growth, green-space and flat height views. The <a href="#sources">sources and methods page</a> below records what each layer can and cannot show.</p>
-        <aside class="sources"><span class="sources__label">1 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.</p></aside>
+        <p class="chapter-folio"><span>01 / 10</span><span>Athens today</span></p>
+        <figure class="map-static"><img src="assets/static/ch01.png" width="780" height="975" loading="lazy" alt="Oblique 3D map of 150 metre average-height cells across the Athens basin."><figcaption>Urban Atlas 2012 · 150 m cells · ×6 vertical exaggeration; area averages, not a building model.</figcaption></figure>
+        <h2>The sameness</h2>
+        <p>Stand on a street corner anywhere in the Athens basin and look up. The same building looks back: a concrete frame of five, six, seven storeys, balconies running the width of the facade, the top floors stepping back against the sky. Ride a bus from Patisia to Kallithea to Peristeri and the type repeats, with small variations, for an hour in any direction. Athens is among the oldest cities in Europe, and almost nothing standing in it is old. Of the buildings standing in the Municipality of Athens at the 2021 census, two in three were built between 1946 and 1980. Below, we tell the story of how a small neoclassical capital, swollen first by refugees and then by villagers, rebuilt itself block by block into the concrete city on your screen, without a master plan, with almost no bank credit, and with barely any state construction.</p>
+        <p>The height is the law and the arithmetic. The sameness of the look is something else, and here the ordinary hunch is right: it was taste, and the trade. No rule said the balconies must run flat across the front, or the top floor must step back, or the frame must be left as bare concrete. That was simply the language of the age, built with the one cheap technology everyone shared and repeated by thousands of small contractors with barely an architect among them. The law made the buildings the same height; taste and the concrete made them look like siblings.</p>
+        <aside class="sources"><span class="sources__label">1 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; Karadimitriou, Maloutas &amp; Arapoglou 2021.</p></aside>
         </div>
       </section>
 
       <section class="step prose" id="chapter-2" data-chapter="2">
         <div class="card">
-        <p class="chapter-folio"><span>02 / 10</span><span>Athens today</span></p>
-        <figure class="map-static"><img src="assets/static/ch01.png" width="780" height="975" loading="lazy" alt="Oblique 3D map of 150 metre average-height cells across the Athens basin."><figcaption>Urban Atlas 2012 · 150 m cells · ×6 vertical exaggeration; area averages, not a building model.</figcaption></figure>
-        <h2>The sameness</h2>
-        <p>Stand on a street corner anywhere in the Athens basin and look up. The same building looks back: a concrete frame of five, six, seven storeys, balconies running the width of the facade, the top floors stepping back against the sky. Ride a bus from Patisia to Kallithea to Peristeri and the type repeats, with small variations, for an hour in any direction. Athens is among the oldest cities in Europe, and almost nothing standing in it is old. Of the buildings standing in the Municipality of Athens at the 2021 census, two in three were built between 1946 and 1980. Below, we tell the story of how a small neoclassical capital, swollen first by refugees and then by villagers, rebuilt itself block by block into the concrete city on your screen, without a master plan, with almost no bank credit, and with barely any state construction.</p>
-        <p>The height is the law and the arithmetic. The sameness of the look is something else, and here the ordinary hunch is right: it was taste, and the trade. No rule said the balconies must run flat across the front, or the top floor must step back, or the frame must be left as bare concrete. That was simply the language of the age, built with the one cheap technology everyone shared and repeated by thousands of small contractors with barely an architect among them. The law made the buildings the same height; taste and the concrete made them look like siblings.</p>
-        <aside class="sources"><span class="sources__label">2 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; Karadimitriou, Maloutas &amp; Arapoglou 2021.</p></aside>
-        </div>
-      </section>
-
-      <section class="step prose" id="chapter-3" data-chapter="3">
-        <div class="card">
-        <p class="chapter-folio"><span>03 / 10</span><span>1833–1920</span></p>
+        <p class="chapter-folio"><span>02 / 10</span><span>1833–1920</span></p>
         <aside class="fact-panel" aria-labelledby="fact-ch2-caption">
           <strong class="fact-panel__figure">453,000</strong>
           <p class="fact-panel__caption" id="fact-ch2-caption">people in greater Athens by 1920</p>
@@ -110,13 +101,13 @@
         <figure class="map-static"><img src="assets/static/ch02.png" width="780" height="975" loading="lazy" alt="Historic-tinted map of Athens and Piraeus showing the traced 1894 built-up extent."><figcaption>Built-up area · traced from the 1894 Baedeker plan (after Kaupert's survey) · georeferencing ≈25–45 m.</figcaption></figure>
         <h2>A small capital, big plans</h2>
         <p>Athens became the capital of the new Greek state in 1834, when it was a town of a few thousand people below the Acropolis. The plan drawn for it the year before was ambitious. Stamatios Kleanthis and Eduard Schaubert laid out boulevards, squares, public gardens, and an archaeological park wrapping the ancient center. Within months the plan was in retreat. Landowners whose plots fell under the proposed squares protested the expropriations, the young state had no money to pay them, and in 1834 Leo von Klenze redrew the scheme at a fraction of its ambition. That first defeat set the pattern for the next century and a half. Athenian land was held in small private plots, assembling them was beyond the state’s means, and plans that needed open space lost to the owners of the ground. The city then grew slowly, a modest capital of neoclassical houses spreading out from the old town. By 1920 the wider agglomeration held about 453,000 people. Surveys made by German cartographers in the 1870s and 1880s show how little ground a century of growth had covered.</p>
-        <aside class="sources"><span class="sources__label">3 / Sources</span><p>Athens Social Atlas (Kleanthis–Schaubert entry); census series via Salvati 2022; Kaupert, Karten von Attika.</p></aside>
+        <aside class="sources"><span class="sources__label">2 / Sources</span><p>Athens Social Atlas (Kleanthis–Schaubert entry); census series via Salvati 2022; Kaupert, Karten von Attika.</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-4" data-chapter="4">
+      <section class="step prose" id="chapter-3" data-chapter="3">
         <div class="card">
-        <p class="chapter-folio"><span>04 / 10</span><span>1922–1928</span></p>
+        <p class="chapter-folio"><span>03 / 10</span><span>1922–1928</span></p>
         <aside class="fact-panel fact-panel--chart" aria-labelledby="fact-ch3-caption">
           <strong class="fact-panel__figure">453k → 802k</strong>
           <p class="fact-panel__caption" id="fact-ch3-caption">the city nearly doubled in eight years</p>
@@ -132,13 +123,13 @@
         <figure class="map-static"><img src="assets/static/ch03.png" width="780" height="975" loading="lazy" alt="Map highlighting municipalities associated with refugee settlement after 1922."><figcaption>Refugee-settlement municipalities, 1923 onward · modern municipal boundaries are geographic proxies, not settlement footprints.</figcaption></figure>
         <h2>The city doubles in eight years</h2>
         <p>In 1922 the Greek army was defeated in Asia Minor, and in the forced population exchange that followed, a country of roughly five million absorbed about 1.2 million refugees. More than 220,000 of them settled in Athens and Piraeus. The agglomeration went from 453,000 people in 1920 to 802,000 in 1928; the city nearly doubled in eight years. The Refugee Settlement Commission, set up in 1923 under the League of Nations, built Nea Ionia, Kaisariani, Vyronas, Nea Kokkinia and the rest of the quarters now lighting up on the map, sited deliberately one to four kilometers outside the built-up city. In several of them, refugees were nearly the entire population. The influx drew the social map Athens still lives with. The new belt became the working-class periphery, poor and densely packed, and its housing was never adequate. Families doubled up in small state-built houses and added rooms themselves for decades. The demand that would later power the postwar boom accumulated here, on the edge of a city that had not planned for it.</p>
-        <aside class="sources"><span class="sources__label">4 / Sources</span><p>Kapokakis, Kritikos &amp; Anastasiadou 2023; Athens Social Atlas (refugee settlement entries); Leontidou 1990.</p></aside>
+        <aside class="sources"><span class="sources__label">3 / Sources</span><p>Kapokakis, Kritikos &amp; Anastasiadou 2023; Athens Social Atlas (refugee settlement entries); Leontidou 1990.</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-5" data-chapter="5">
+      <section class="step prose" id="chapter-4" data-chapter="4">
         <div class="card">
-        <p class="chapter-folio"><span>05 / 10</span><span>1929–1940</span></p>
+        <p class="chapter-folio"><span>04 / 10</span><span>1929–1940</span></p>
         <aside class="fact-panel" aria-labelledby="fact-ch4-caption">
           <strong class="fact-panel__figure">1929</strong>
           <p class="fact-panel__caption" id="fact-ch4-caption">Law 3741: a flat could be owned separately from the building</p>
@@ -170,13 +161,13 @@
           </svg>
           <figcaption>The concrete frame carries repeated floors above shops and pilotis, then steps back from the street toward a shared roof.</figcaption>
         </figure>
-        <aside class="sources"><span class="sources__label">5 / Sources</span><p>Law 3741/1929 (ΦΕΚ Α΄4); Aureli, Giudici &amp; Issaias 2012; Kalfa 2023; CoHab Athens; Marmaras 1991 (via CoHab Athens).</p></aside>
+        <aside class="sources"><span class="sources__label">4 / Sources</span><p>Law 3741/1929 (ΦΕΚ Α΄4); Aureli, Giudici &amp; Issaias 2012; Kalfa 2023; CoHab Athens; Marmaras 1991 (via CoHab Athens).</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-6" data-chapter="6">
+      <section class="step prose" id="chapter-5" data-chapter="5">
         <div class="card">
-        <p class="chapter-folio"><span>06 / 10</span><span>1946–1980</span></p>
+        <p class="chapter-folio"><span>05 / 10</span><span>1946–1980</span></p>
         <aside class="fact-panel fact-panel--chart" aria-labelledby="fact-ch5-caption">
           <strong class="fact-panel__figure">&lt;1,000 → ~35,000</strong>
           <p class="fact-panel__caption" id="fact-ch5-caption">buildings of five storeys or more</p>
@@ -231,13 +222,13 @@
         <p>The rule never measured every street and handed each one its own height. It sorted streets into a few broad bands, set a ceiling for each, and in the crowded core set one ceiling for almost everyone — so the same height never needed the same street, only a street wide enough to reach the same rung. And because antiparochi paid the landowner and the builder alike in finished flats, both wanted every centimetre the ceiling allowed. A limit that comes in a few coarse steps, and a reason for everyone to touch it, is enough to level a whole basin to one height.</p>
         <p>When the junta raised the allowances in 1968 it did so everywhere at once, mostly as extra recessed floors. The deal and the code together transformed the city. Around 1950 Athens had fewer than a thousand buildings of five storeys or more; by 1980 it had about 35,000. The builders were not corporations: in an archival sample of building permits, 940 separate construction firms appear, averaging 1.3 buildings each.</p>
         <p>One number in the folklore needs correcting before we go on. It is often said that 90 percent of Athens was built through antiparochi, and that figure traces to no dataset; the best archival estimate we have found attributes about 45 percent of apartment permits from 1955 to 1970 to antiparochi, explicitly as a lower bound, with self-building accounting for much of the rest. As the map sweeps across the postwar decades, the census is counting what those channels left standing. Of the buildings standing in Greece today, nearly half date from 1946 to 1980; in the Municipality of Athens, two in three.</p>
-        <aside class="sources"><span class="sources__label">6 / Sources</span><p>CoHab Athens (“Land for Flat”); Kalfa 2023; ELSTAT 2011 &amp; 2021 Buildings Censuses; Karadimitriou, Maloutas &amp; Arapoglou 2021; GOK 1955 (RD 9/30.8.1955, arts. 16 &amp; 29); EL 395/1968.</p></aside>
+        <aside class="sources"><span class="sources__label">5 / Sources</span><p>CoHab Athens (“Land for Flat”); Kalfa 2023; ELSTAT 2011 &amp; 2021 Buildings Censuses; Karadimitriou, Maloutas &amp; Arapoglou 2021; GOK 1955 (RD 9/30.8.1955, arts. 16 &amp; 29); EL 395/1968.</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-7" data-chapter="7">
+      <section class="step prose" id="chapter-6" data-chapter="6">
         <div class="card">
-        <p class="chapter-folio"><span>07 / 10</span><span>1950s–1970s</span></p>
+        <p class="chapter-folio"><span>06 / 10</span><span>1950s–1970s</span></p>
         <aside class="fact-panel" aria-labelledby="fact-ch6-caption">
           <strong class="fact-panel__figure">10–20%</strong>
           <p class="fact-panel__caption" id="fact-ch6-caption">of the 19th-century neoclassical stock survives (convergent estimate)</p>
@@ -245,13 +236,13 @@
         <figure class="map-static"><img src="assets/static/ch06.png" width="780" height="975" loading="lazy" alt="Close map of present-day building footprints in the historic core below the Acropolis."><figcaption>OpenStreetMap footprints, present day · no footprint carries a demolition or construction date.</figcaption></figure>
         <h2>What it replaced</h2>
         <p>The boom did not only fill empty land. In the center it replaced a city that was already there, house by house. Nineteenth-century Athens had been built in neoclassical stone and stucco; of the buildings put up between 1833 and 1900, an estimated 10 to 20 percent survive today. The estimate converges across studies, though no official count was ever made. The demolition ran from the late 1950s through the 1970s and required no government program: a neoclassical house fell whenever the flats its plot could carry were worth more than the house itself, which, as permitted heights rose decade by decade, they increasingly were. Heritage protection for anything built after 1830 was applied inconsistently until after 1974. Plaka is the exception that shows the mechanism. The quarter under the Acropolis survived because a 1973 study and the protective regime that followed in 1979 made redevelopment there illegal, interrupting <i class="loanword" lang="el-Latn">antiparochi</i> at the decisive moment; it is now the only continuous piece of the nineteenth-century city. This is why the historic core is the subtlest area on the map. Its streets were urbanized before 1920, but its buildings date from the rebuild: central Athens is a 1960s city standing on an 1830s street plan.</p>
-        <aside class="sources"><span class="sources__label">7 / Sources</span><p>Karatzas 2024; Athens Social Atlas (Plaka entry); Kalfa 2023.</p></aside>
+        <aside class="sources"><span class="sources__label">6 / Sources</span><p>Karatzas 2024; Athens Social Atlas (Plaka entry); Kalfa 2023.</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-8" data-chapter="8">
+      <section class="step prose" id="chapter-7" data-chapter="7">
         <div class="card">
-        <p class="chapter-folio"><span>08 / 10</span><span>1833 onward</span></p>
+        <p class="chapter-folio"><span>07 / 10</span><span>1833 onward</span></p>
         <aside class="fact-panel fact-panel--chart" aria-labelledby="fact-ch7-caption">
           <strong class="fact-panel__figure">~10–11%</strong>
           <p class="fact-panel__caption" id="fact-ch7-caption">tree cover: around a third of the EU-capital average</p>
@@ -268,13 +259,13 @@
         <figure class="map-static"><img src="assets/static/ch07.png" width="780" height="975" loading="lazy" alt="Map of mapped green urban areas and supporting street-tree texture across the Athens basin."><figcaption>Urban Atlas 2018 green urban areas · class 14100 excludes mapped areas under 0.25 ha.</figcaption></figure>
         <h2>Where the parks went</h2>
         <p>The mechanism that rebuilt the housing also explains the missing parks. From the 1833 plan onward, every scheme that reserved Athenian land for public space met the same obstacle. The land was already owned in small plots, and expropriation failed or was cut back. When the postwar boom came, redevelopment happened one plot at a time, and a process that never assembled land beyond a single building site had no instrument for producing a park. We can measure the deficit today. In a 2026 study ranking 862 European cities on green access, Athens sits near the bottom: 3.3 percent of its residents have three visible trees from home, 30 percent tree canopy in their neighborhood, and a green space within 300 meters, the benchmark the study applies. Tree cover in Athens runs around a third of the average for EU capitals. The green Athenians do have lies mostly at the edges of the map, on Parnitha, Hymettus and Penteli and along the coast, rather than inside the fabric. The mountains and the coast serve as the city’s green reserve; the basin itself holds almost none.</p>
-        <aside class="sources"><span class="sources__label">8 / Sources</span><p>JRC / Nature Communications 2026 (3-30-300 study); EEA tree-cover data; Athens Social Atlas (Kleanthis–Schaubert entry).</p></aside>
+        <aside class="sources"><span class="sources__label">7 / Sources</span><p>JRC / Nature Communications 2026 (3-30-300 study); EEA tree-cover data; Athens Social Atlas (Kleanthis–Schaubert entry).</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-9" data-chapter="9">
+      <section class="step prose" id="chapter-8" data-chapter="8">
         <div class="card">
-        <p class="chapter-folio"><span>09 / 10</span><span>1980–2008</span></p>
+        <p class="chapter-folio"><span>08 / 10</span><span>1980–2008</span></p>
         <aside class="fact-panel fact-panel--chart" aria-labelledby="fact-ch8-caption">
           <strong class="fact-panel__figure">~40,000 → ~1,500</strong>
           <p class="fact-panel__caption" id="fact-ch8-caption">residential building permits, Greece</p>
@@ -290,13 +281,13 @@
         <figure class="map-static"><img src="assets/static/ch08.png" width="780" height="975" loading="lazy" alt="Map of cumulative GHSL built-up land across Attica through 2020."><figcaption>Copernicus GHSL R2023 · built-up land by 2020; cumulative observations are not individual building dates.</figcaption></figure>
         <h2>The edges</h2>
         <p>By 1980 the basin was filling up and growth moved to the edges. The satellite record takes over on the map here. Copernicus registers built-up land in four cumulative snapshots, in 1975, 1990, 2005 and 2020, and they show the margins advancing while the already-built center barely changes. The eastern plain of Mesogeia stayed largely agricultural into the mid-1990s and then urbanized around the new airport at Spata, opened in 2001, and the Attiki Odos tollway, completed in 2004, the same year the Olympics brought the metro extension, the suburban rail and the tram. Eastern Attica’s share of the conurbation’s population rose from about 5 percent in 1951 to about 15 percent in 2021. Then the financial crisis stopped construction almost entirely. Residential building permits in Greece fell 96 percent between 2006 and 2016, from roughly 40,000 a year to under 1,500. The expansion you have just watched has barely moved since.</p>
-        <aside class="sources"><span class="sources__label">9 / Sources</span><p>Copernicus GHSL R2023; Rontos et al. 2024; Karadimitriou, Maloutas &amp; Arapoglou 2021; Beriatos &amp; Gospodini 2004.</p></aside>
+        <aside class="sources"><span class="sources__label">8 / Sources</span><p>Copernicus GHSL R2023; Rontos et al. 2024; Karadimitriou, Maloutas &amp; Arapoglou 2021; Beriatos &amp; Gospodini 2004.</p></aside>
         </div>
       </section>
 
-      <section class="step prose" id="chapter-10" data-chapter="10">
+      <section class="step prose" id="chapter-9" data-chapter="9">
         <div class="card">
-        <p class="chapter-folio"><span>10 / 10</span><span>1946–1980</span></p>
+        <p class="chapter-folio"><span>09 / 10</span><span>1946–1980</span></p>
         <aside class="fact-panel fact-panel--chart" aria-labelledby="fact-ch9-caption">
           <strong class="fact-panel__figure">0.0%</strong>
           <p class="fact-panel__caption" id="fact-ch9-caption">social-rental share of the housing stock, 2021</p>
@@ -313,7 +304,17 @@
         <h2>The verdict</h2>
         <p>This is the view we opened with, now with the construction dates showing. The sameness has an explanation. A 1929 law made it possible to own a building floor by floor, and a 1955 building code handed every plot on a similar street the same envelope. Two financing channels, the <i class="loanword" lang="el-Latn">antiparochi</i> swap and family self-building, turned that possibility into some 35,000 apartment blocks in three decades, plot by plot, with banks nearly absent. And the state, which elsewhere in postwar Europe built social housing at scale, in Greece built almost none. Public construction stayed near 3 percent of housing output by one estimate, and the 2021 census records 0.0 percent of the Greek housing stock as social rental, against a fifth to a third in Denmark, Austria or the Netherlands. Scholars describe the system as the substitute for a welfare state: the family plot, the contractor’s deal and the tax-free swap did the work that public housing programs did elsewhere. The result was one building type, repeated wherever a plot and a deal could be found. Of the buildings standing in the Municipality of Athens today, two in three came out of those years.</p>
         <div class="data-lockup" aria-label="Headline floors and construction-period finding"><strong>2 in 3</strong><span>of the buildings in the Municipality of Athens with three or more upper floors were built between 1946 and 1980. ELSTAT 2021 Buildings Census, Table 07A.</span></div>
-        <aside class="sources"><span class="sources__label">10 / Sources</span><p>Allen, Barlow, Leal, Maloutas &amp; Padovani 2004; Emmanuel 2015; Housing Europe 2025 / Eurostat; ELSTAT 2021 Buildings Census.</p></aside>
+        <aside class="sources"><span class="sources__label">9 / Sources</span><p>Allen, Barlow, Leal, Maloutas &amp; Padovani 2004; Emmanuel 2015; Housing Europe 2025 / Eurostat; ELSTAT 2021 Buildings Census.</p></aside>
+        </div>
+      </section>
+
+      <section class="step prose" id="chapter-10" data-chapter="10">
+        <div class="card">
+        <p class="chapter-folio"><span>10 / 10</span><span>Explore</span></p>
+        <figure class="map-static"><img src="assets/static/ch10.png" width="780" height="975" loading="lazy" alt="Static starting view of the Explore map showing the 1946 to 1980 census layer."><figcaption>ELSTAT 2021 Buildings Census · built 1946–80; this phone figure is static and the denominator is standing buildings.</figcaption></figure>
+        <h2>Explore</h2>
+        <p>Use the map controls to compare construction periods and layers. Census colors show the share of buildings still standing in 2021 that date from the selected period; they do not count every building ever built. Double-click to zoom in to today’s building footprints. Greece publishes no construction date for an individual building, so those footprints provide location and shape only. The panel also opens satellite growth, green space and both height views. The <a href="#sources">sources and methods page</a> records the date and limits of every layer.</p>
+        <aside class="sources"><span class="sources__label">10 / Sources</span><p>ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.</p></aside>
         </div>
       </section>
 

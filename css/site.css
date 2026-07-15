@@ -215,6 +215,25 @@ a:hover {
   text-transform: uppercase;
 }
 
+.map-interaction-hint {
+  position: absolute;
+  top: 1.5rem;
+  left: calc(var(--rail-margin) + var(--card-width) + 1.5rem);
+  z-index: 11;
+  margin: 0;
+  padding: 0.5rem 0.7rem 0.45rem;
+  background: rgba(253, 252, 250, 0.9);
+  border-top: 1px solid var(--ink-2);
+  color: var(--ink-3);
+  font-family: var(--font-text);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+  line-height: 1.25;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
 .map-legend,
 .map-controls,
 .map-tooltip,
@@ -758,6 +777,10 @@ footer {
 
   .map-controls {
     right: 1.5rem;
+  }
+
+  .map-interaction-hint {
+    display: none;
   }
 
   .map-legend {
