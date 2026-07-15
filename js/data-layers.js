@@ -9,6 +9,7 @@
     ghsl,
     green,
     heightBounds,
+    heightGrid,
     streetTrees,
     extent1894,
     config
@@ -20,6 +21,8 @@
     var ghslRamp = config.ghslRamp;
     var refugeeMunicipalities = config.refugeeMunicipalities;
     var mapGround = config.mapGround;
+    var heightRamp = config.heightRamp;
+    var heightExaggeration = config.heightExaggeration;
     localMap.addSource("community-epochs", {
       type: "geojson",
       data: communities
@@ -33,6 +36,7 @@
     localMap.addSource("green-areas", { type: "geojson", data: green });
     localMap.addSource("street-trees", { type: "geojson", data: streetTrees });
     localMap.addSource("extent-1894", { type: "geojson", data: extent1894 });
+    localMap.addSource("height-grid", { type: "geojson", data: heightGrid });
     localMap.addSource("height-carpet", {
       type: "image",
       url: "data/heights_10m.png",
@@ -98,6 +102,35 @@
         paint: {
           "raster-opacity": 1,
           "raster-resampling": "nearest"
+        }
+      },
+      beforeRoads
+    );
+    localMap.addLayer(
+      {
+        id: "height-extrusion",
+        type: "fill-extrusion",
+        source: "height-grid",
+        minzoom: 8.5,
+        maxzoom: 15,
+        layout: { visibility: "none" },
+        paint: {
+          "fill-extrusion-color": [
+            "case",
+            ["<=", ["get", "h"], 3],
+            heightRamp[0],
+            ["<=", ["get", "h"], 9],
+            heightRamp[1],
+            ["<=", ["get", "h"], 15],
+            heightRamp[2],
+            ["<=", ["get", "h"], 21],
+            heightRamp[3],
+            heightRamp[4]
+          ],
+          "fill-extrusion-height": ["*", ["get", "h"], heightExaggeration],
+          "fill-extrusion-base": 0,
+          "fill-extrusion-opacity": 1,
+          "fill-extrusion-vertical-gradient": false
         }
       },
       beforeRoads

@@ -242,11 +242,13 @@ a:hover {
   margin: 0;
 }
 
-.map-legend[data-layer="heights"] {
+.map-legend[data-layer="heights"],
+.map-legend[data-layer="heights3d"] {
   width: min(30rem, calc(100vw - 7rem));
 }
 
-.map-legend[data-layer="heights"] .map-legend__breaks span {
+.map-legend[data-layer="heights"] .map-legend__breaks span,
+.map-legend[data-layer="heights3d"] .map-legend__breaks span {
   white-space: pre-line;
   text-align: center;
 }
@@ -287,6 +289,7 @@ a:hover {
   margin-top: 0.55rem;
   font-size: 0.68rem;
   line-height: 1.35;
+  white-space: pre-line;
 }
 
 .map-controls {
@@ -762,7 +765,8 @@ footer {
     width: calc(100vw - var(--rail-margin) - 27rem);
   }
 
-  .map-legend[data-layer="heights"] {
+  .map-legend[data-layer="heights"],
+  .map-legend[data-layer="heights3d"] {
     width: calc(100vw - var(--rail-margin) - 27rem);
   }
 

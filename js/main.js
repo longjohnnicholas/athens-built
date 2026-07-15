@@ -19,6 +19,12 @@
   var GHSL_RAMP = ["#DDDAD4", "#BBB7AF", "#736F66", "#4A463F"];
   var GHSL_YEARS = [1975, 1990, 2005, 2020];
   var HEIGHT_RAMP = ["#DEE3E7", "#B8C2CA", "#8FA0AC", "#64798A", "#3C4F60"];
+  var HEIGHT_GRID_CELL_SIZE_M = 150;
+  var HEIGHT_EXAGGERATION = 6;
+  var HEIGHT_PITCH = 58;
+  var HEIGHT_BEARING = -17;
+  var HEIGHT_STORY_NOTE =
+    "A plateau, not a skyline: the same five-to-seven-storey carpet across the basin.";
   var HISTORIC_EXTENT_LEGEND =
     "Built-up area · traced from the 1894 Baedeker plan (after Kaupert's survey) · georeferencing ≈25–45 m";
   var GHSL_OBSERVATION_GAP =
@@ -194,6 +200,7 @@
         fetchGeoJSON("data/ghsl_bands.geojson"),
         fetchGeoJSON("data/green_areas.geojson"),
         fetchGeoJSON("data/heights_10m_bounds.json"),
+        fetchGeoJSON("data/heights_grid_100m.geojson"),
         fetchGeoJSON("data/street_trees.geojson"),
         fetchGeoJSON("data/extent_1894.geojson")
       ]);
@@ -324,6 +331,16 @@
         "visibility",
         activeMapLayer === "heights" ? "visible" : "none"
       );
+      map.setLayoutProperty(
+        "height-extrusion",
+        "visibility",
+        activeMapLayer === "heights3d" ? "visible" : "none"
+      );
+      map.setLayoutProperty(
+        "buildings",
+        "visibility",
+        activeMapLayer === "heights3d" ? "none" : "visible"
+      );
       map.setPaintProperty(
         "street-tree-texture",
         "circle-opacity",
@@ -430,6 +447,18 @@
     );
   }
 
+  function showHeights3dLegend() {
+    var provenance = "Urban Atlas 2012 · " + HEIGHT_GRID_CELL_SIZE_M +
+      " m cells · ×" + HEIGHT_EXAGGERATION + " vertical exaggeration";
+    setLegend(
+      "heights3d",
+      "Average height · 3D",
+      HEIGHT_RAMP,
+      ["0–3 m", "3–9 m", "9–15 m", "15–21 m", "21+ m"],
+      (currentChapter === "9" ? HEIGHT_STORY_NOTE + "\n" : "") + provenance
+    );
+  }
+
   function showGreenLegend() {
     setLegend(
       "green",
@@ -457,6 +486,8 @@
       showCensusLegend();
     } else if (activeMapLayer === "heights") {
       showHeightsLegend();
+    } else if (activeMapLayer === "heights3d") {
+      showHeights3dLegend();
     } else if (activeMapLayer === "satellite") {
       showGhslLegend();
     } else if (activeMapLayer === "green") {
@@ -480,7 +511,9 @@
     activeMapLayer = layer;
     syncEpochAvailability();
     if (alreadyRendered) {
-      if (layer === "footprints") updateLegend();
+      // Chapter context can change while the rendered layer stays the same
+      // (for example Explore Heights 3D → chapter 9 Heights 3D).
+      updateLegend();
       return;
     }
     updateLegend();
@@ -506,7 +539,7 @@
     return Math.min(2, Math.max(0, Math.floor(progress * 3)));
   }
 
-  function applySweep(chapter) {
+  function applySweep(chapter, moveForStateChange) {
     var index = sweepIndex(chapterProgress[chapter] || 0);
     if (chapter === "5") {
       var epoch = CENSUS_SWEEP[index];
@@ -520,43 +553,77 @@
       if (chip.textContent !== ghslChip) chip.textContent = ghslChip;
     } else if (chapter === "9") {
       if ((chapterProgress[chapter] || 0) < 0.5) {
+        var leaving3d = activeMapLayer === "heights3d";
         setCensusEpoch("p_1946_80");
         setActiveLayer("census");
         chip.textContent = "09 / 10 · 1946–1980";
+        if (leaving3d && moveForStateChange) moveCamera(CHAPTERS[chapter], false);
       } else {
-        setActiveLayer("heights");
-        chip.textContent = "09 / 10 · Building height · 2012";
+        var entering3d = activeMapLayer !== "heights3d";
+        setActiveLayer("heights3d");
+        chip.textContent =
+          "09 / 10 · Average height · 2012 · ×" + HEIGHT_EXAGGERATION;
+        if (entering3d && moveForStateChange) moveCamera(CHAPTERS[chapter], false);
       }
     }
   }
 
+  function setInteractionHandler(handler, enabled) {
+    if (!handler) return;
+    var method = enabled ? "enable" : "disable";
+    if (typeof handler[method] === "function") handler[method]();
+  }
+
   function setMapInteraction(enabled) {
     if (!map) return;
-    [
-      "scrollZoom",
-      "boxZoom",
-      "dragRotate",
-      "dragPan",
-      "keyboard",
-      "doubleClickZoom",
-      "touchZoomRotate",
-      "touchPitch"
-    ].forEach(function (handlerName) {
-      var handler = map[handlerName];
-      if (!handler) return;
-      if (enabled && typeof handler.enable === "function") handler.enable();
-      if (!enabled && typeof handler.disable === "function") handler.disable();
+    var allow3d = enabled && activeMapLayer === "heights3d";
+    ["scrollZoom", "boxZoom", "dragPan", "keyboard", "doubleClickZoom"].forEach(function (handlerName) {
+      setInteractionHandler(map[handlerName], enabled);
     });
+    if (map.keyboard) {
+      if (allow3d && typeof map.keyboard.enableRotation === "function") {
+        map.keyboard.enableRotation();
+      } else if (typeof map.keyboard.disableRotation === "function") {
+        map.keyboard.disableRotation();
+      }
+    }
+    ["dragRotate", "touchPitch"].forEach(function (handlerName) {
+      setInteractionHandler(map[handlerName], allow3d);
+    });
+    if (map.touchZoomRotate) {
+      setInteractionHandler(map.touchZoomRotate, enabled);
+      if (allow3d && typeof map.touchZoomRotate.enableRotation === "function") {
+        map.touchZoomRotate.enableRotation();
+      } else if (typeof map.touchZoomRotate.disableRotation === "function") {
+        map.touchZoomRotate.disableRotation();
+      }
+    }
     map.getContainer().setAttribute("aria-disabled", enabled ? "false" : "true");
+  }
+
+  function setExploreCameraMode(use3d) {
+    if (!mapStyleReady || !map) return;
+    map.stop();
+    var options = {
+      bearing: use3d ? HEIGHT_BEARING : 0,
+      pitch: use3d ? HEIGHT_PITCH : 0
+    };
+    if (prefersReducedMotion) {
+      map.jumpTo(options);
+    } else {
+      options.duration = 900;
+      map.easeTo(options);
+    }
   }
 
   function moveCamera(state, settle) {
     if (!mapStyleReady || !map) return;
+    var use3d = activeMapLayer === "heights3d";
     var options = {
       center: state.center,
       zoom: state.zoom,
-      bearing: 0,
-      pitch: 0,
+      bearing: use3d ? HEIGHT_BEARING : 0,
+      pitch: use3d ? HEIGHT_PITCH : 0,
       padding: cameraPadding()
     };
     map.stop();
@@ -616,7 +683,7 @@
       applySweep("8");
     } else if (chapter === "9") {
       setCensusEpoch(state.epoch);
-      applySweep("9");
+      applySweep("9", false);
     } else if (chapter === "10") {
       setCensusEpoch(epochSelect.value);
       var selectedLayer = controls.querySelector(
@@ -798,12 +865,15 @@
               data[5],
               data[6],
               data[7],
+              data[8],
               {
                 activeEpoch: activeEpoch,
                 clayExpression: clayExpression,
                 overlayTransition: overlayTransition,
                 ghslYears: GHSL_YEARS,
                 ghslRamp: GHSL_RAMP,
+                heightRamp: HEIGHT_RAMP,
+                heightExaggeration: HEIGHT_EXAGGERATION,
                 refugeeMunicipalities: REFUGEE_MUNICIPALITIES,
                 mapGround: MAP_GROUND
               }
@@ -877,7 +947,7 @@
           currentChapter === chapter
         ) {
           chapterProgress[chapter] = response.progress;
-          applySweep(chapter);
+          applySweep(chapter, true);
         }
       })
       .onStepExit(function (response) {
@@ -910,6 +980,8 @@
     }
     if (event.target.name === "layer") {
       setActiveLayer(event.target.value);
+      setMapInteraction(true);
+      setExploreCameraMode(event.target.value === "heights3d");
     }
   });
 

@@ -84,6 +84,12 @@ Chapters 2–9 bind a single flat fact panel to chapter state in the upper part 
 
 The same panel is one real DOM node inside its chapter card, immediately below the folio. Above 700px it is fixed into the map field and only the active chapter's panel is visible; at 700px and below it returns to static flow, remains visible in every applicable card, and uses edge-only borders against `--paper`. Chapters 1 and 10 have no panel. This single-node binding prevents desktop/mobile copy drift and ensures a chapter's in-card data lockup is never duplicated by the panel.
 
+### Addendum — aggregated 3D height view (2026-07-15)
+
+The extrusion is an aggregate surface, never a building model. It is derived from the Urban Atlas 2012 10 m DHM by taking the mean of positive source samples in each web cell and omitting cells with no positive observation. The requested 100 m grid produced a 3.81 MB compact GeoJSON, above the 2.5 MB gate, so the binding fallback is 150 m: 17,638 occupied cells, heights rounded to 0.1 m, coordinates rounded to five decimal degrees, 1.84 MB. To remove repeated GeoJSON syntax without altering cell geometry, equal-height cell rings are grouped as MultiPolygon features carrying the shared `h` property. The mandated path remains `data/heights_grid_100m.geojson`; its metadata records both the requested 100 m size and the shipped 150 m size, and every user-facing disclosure says 150 m.
+
+`height-extrusion` uses the same slate bands and breaks as the flat carpet, with extrusion height `h × 6`, flat band color on the whole prism, pitch 58°, and bearing −17°. Chapter 9 has two symmetric progress states: the 1946–80 census view first, then the extrusion. Its 3D legend begins, verbatim, “A plateau, not a skyline: the same five-to-seven-storey carpet across the basin.” and follows with “Urban Atlas 2012 · 150 m cells · ×6 vertical exaggeration.” Explore retains `Heights` for the 10 m flat raster and adds `Heights 3D`; rotation and pitch controls are enabled only for the 3D selection. Leaving 3D returns bearing and pitch to zero. Reduced motion makes both layer and camera changes instant.
+
 ## 3. Typography
 
 | Role | Face | Size / weight |
