@@ -23,6 +23,9 @@
   var HEIGHT_EXAGGERATION = 6;
   var HEIGHT_PITCH = 58;
   var HEIGHT_BEARING = -17;
+  var HEIGHT_LAYER_ID = "height-extrusion";
+  var HEIGHT_RISE_DURATION = 1300;
+  var HEIGHT_ORBIT_DEGREES_PER_SECOND = 3;
   var HEIGHT_STORY_NOTE =
     "A plateau, not a skyline: the same five-to-seven-storey carpet across the basin.";
   var HISTORIC_EXTENT_LEGEND =
@@ -68,8 +71,7 @@
       zoom: 11.2,
       bearing: HEIGHT_BEARING,
       pitch: HEIGHT_PITCH,
-      layer: "heights3d",
-      reducedMotionLayer: "heights"
+      layer: "heights3d"
     },
     "2": {
       chip: "02 / 10 · 1833–1920",
@@ -162,6 +164,7 @@
   var renderedRefugees = null;
   var renderedExtent1894 = null;
   var tooltipPinned = false;
+  var heightView = null;
 
   function cameraPadding() {
     return {
@@ -571,37 +574,12 @@
     }
   }
 
-  function setInteractionHandler(handler, enabled) {
-    if (!handler) return;
-    var method = enabled ? "enable" : "disable";
-    if (typeof handler[method] === "function") handler[method]();
-  }
-
   function setMapInteraction(enabled) {
-    if (!map) return;
-    var allow3d = enabled && activeMapLayer === "heights3d";
-    ["scrollZoom", "boxZoom", "dragPan", "keyboard", "doubleClickZoom"].forEach(function (handlerName) {
-      setInteractionHandler(map[handlerName], enabled);
-    });
-    if (map.keyboard) {
-      if (allow3d && typeof map.keyboard.enableRotation === "function") {
-        map.keyboard.enableRotation();
-      } else if (typeof map.keyboard.disableRotation === "function") {
-        map.keyboard.disableRotation();
-      }
-    }
-    ["dragRotate", "touchPitch"].forEach(function (handlerName) {
-      setInteractionHandler(map[handlerName], allow3d);
-    });
-    if (map.touchZoomRotate) {
-      setInteractionHandler(map.touchZoomRotate, enabled);
-      if (allow3d && typeof map.touchZoomRotate.enableRotation === "function") {
-        map.touchZoomRotate.enableRotation();
-      } else if (typeof map.touchZoomRotate.disableRotation === "function") {
-        map.touchZoomRotate.disableRotation();
-      }
-    }
-    map.getContainer().setAttribute("aria-disabled", enabled ? "false" : "true");
+    if (!heightView) return;
+    var mode = "locked";
+    if (enabled && currentChapter === "10") mode = "explore";
+    if (enabled && currentChapter === "1") mode = "opening";
+    heightView.setInteraction(mode);
   }
 
   function setExploreCameraMode(use3d) {
@@ -696,12 +674,16 @@
       if (chapter === "10") {
         map.setMaxBounds(MAX_BOUNDS);
         setMapInteraction(true);
+      } else if (chapter === "1") {
+        map.setMaxBounds(null);
+        setMapInteraction(true);
       } else {
         map.setMaxBounds(null);
         setMapInteraction(false);
       }
     }
     if (move) moveCamera(state);
+    if (chapter === "1" && heightView) heightView.start();
   }
 
   function setChapterState(number, options) {
@@ -709,6 +691,7 @@
     var state = CHAPTERS[chapter];
     if (!state) return;
     currentChapter = chapter;
+    if (chapter !== "1" && heightView) heightView.leave();
     document.querySelectorAll(".step").forEach(function (step) {
       step.classList.toggle(
         "is-active",
@@ -839,6 +822,21 @@
         maxBounds: currentChapter === "10" ? MAX_BOUNDS : undefined
       });
       map = localMap;
+      heightView = window.AthensHeightView.create({
+        map: localMap,
+        chapterElement: document.getElementById("chapter-1"),
+        layerId: HEIGHT_LAYER_ID,
+        exaggeration: HEIGHT_EXAGGERATION,
+        riseDuration: HEIGHT_RISE_DURATION,
+        orbitDegreesPerSecond: HEIGHT_ORBIT_DEGREES_PER_SECOND,
+        reducedMotion: prefersReducedMotion,
+        is3d: function () {
+          return activeMapLayer === "heights3d";
+        },
+        openingIsActive: function () {
+          return currentChapter === "1" && activeMapLayer === "heights3d";
+        }
+      });
       bindTooltipEvents(localMap);
 
       localMap.on("load", function () {
@@ -899,6 +897,8 @@
 
   function destroyMap() {
     if (!map) return;
+    if (heightView) heightView.destroy();
+    heightView = null;
     hideTooltip();
     map.remove();
     map = null;
