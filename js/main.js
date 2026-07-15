@@ -24,7 +24,7 @@
   var HEIGHT_PITCH = 58;
   var HEIGHT_BEARING = -17;
   var HEIGHT_LAYER_ID = "height-extrusion";
-  var HEIGHT_RISE_DURATION = 1300;
+  var HEIGHT_RISE_DURATION = 2200;
   var HEIGHT_ORBIT_DEGREES_PER_SECOND = 3;
   var HEIGHT_STORY_NOTE =
     "A plateau, not a skyline: the same five-to-seven-storey carpet across the basin.";
@@ -66,7 +66,7 @@
 
   var CHAPTERS = {
     "1": {
-      chip: "01 / 10 · Athens today",
+      chip: "01 / 10 · Explore",
       center: [23.715, 37.97],
       zoom: 11.2,
       bearing: HEIGHT_BEARING,
@@ -74,60 +74,61 @@
       layer: "heights3d"
     },
     "2": {
-      chip: "02 / 10 · 1833–1920",
+      chip: "02 / 10 · Athens today",
+      center: [23.715, 37.97],
+      zoom: 11.2,
+      bearing: HEIGHT_BEARING,
+      pitch: HEIGHT_PITCH,
+      layer: "heights3d"
+    },
+    "3": {
+      chip: "03 / 10 · 1833–1920",
       center: [23.727, 37.976],
       zoom: 12.2,
       layer: "footprints",
       historic: true,
       extent1894: true
     },
-    "3": {
-      chip: "03 / 10 · 1922–1928",
+    "4": {
+      chip: "04 / 10 · 1922–1928",
       center: [23.72, 38.0],
       zoom: 11.2,
       layer: "footprints",
       refugees: true
     },
-    "4": {
-      chip: "04 / 10 · 1929–1940",
+    "5": {
+      chip: "05 / 10 · 1929–1940",
       center: [23.735, 37.985],
       zoom: 13.0,
       layer: "footprints",
       historic: true
     },
-    "5": {
-      chip: "05 / 10 · 1946–1980",
+    "6": {
+      chip: "06 / 10 · 1946–1980",
       center: [23.72, 37.98],
       zoom: 10.8,
       layer: "census"
     },
-    "6": {
-      chip: "06 / 10 · 1950s–1970s",
+    "7": {
+      chip: "07 / 10 · 1950s–1970s",
       center: [23.727, 37.972],
       zoom: 13.3,
       layer: "footprints"
     },
-    "7": {
-      chip: "07 / 10 · 1833 onward",
+    "8": {
+      chip: "08 / 10 · 1833 onward",
       center: [23.75, 38.0],
       zoom: 10.2,
       layer: "green"
     },
-    "8": {
-      chip: "08 / 10 · 1980–2008",
+    "9": {
+      chip: "09 / 10 · 1980–2008",
       center: [23.85, 37.95],
       zoom: 9.8,
       layer: "satellite"
     },
-    "9": {
-      chip: "09 / 10 · 1946–1980",
-      center: [23.735, 37.99],
-      zoom: 10.4,
-      layer: "census",
-      epoch: "p_1946_80"
-    },
     "10": {
-      chip: "10 / 10 · Explore",
+      chip: "10 / 10 · 1946–1980",
       center: [23.735, 37.99],
       zoom: 10.4,
       layer: "census",
@@ -153,7 +154,7 @@
   var dataReady = false;
   var dataPromise = null;
   var currentChapter = "1";
-  var chapterProgress = { "5": 0, "8": 0, "9": 0 };
+  var chapterProgress = { "6": 0, "9": 0, "10": 0 };
   var activeMapLayer = "footprints";
   var activeEpoch = "p_1946_80";
   var activeGhslStop = 2020;
@@ -461,7 +462,7 @@
       "Average height · 3D",
       HEIGHT_RAMP,
       ["0–3 m", "3–9 m", "9–15 m", "15–21 m", "21+ m"],
-      (currentChapter === "9" ? HEIGHT_STORY_NOTE + "\n" : "") + provenance
+      (currentChapter === "10" ? HEIGHT_STORY_NOTE + "\n" : "") + provenance
     );
   }
 
@@ -486,7 +487,7 @@
   }
 
   function updateLegend() {
-    if (currentChapter === "2") {
+    if (currentChapter === "3") {
       showHistoricExtentLegend();
     } else if (activeMapLayer === "census") {
       showCensusLegend();
@@ -498,7 +499,7 @@
       showGhslLegend();
     } else if (activeMapLayer === "green") {
       showGreenLegend();
-    } else if (activeMapLayer === "footprints" && currentChapter === "10") {
+    } else if (activeMapLayer === "footprints" && currentChapter === "1") {
       showFootprintsLegend();
     } else {
       legend.hidden = true;
@@ -518,7 +519,7 @@
     syncEpochAvailability();
     if (alreadyRendered) {
       // Chapter context can change while the rendered layer stays the same
-      // (for example Explore Heights 3D → chapter 9 Heights 3D).
+      // (for example Explore Heights 3D → the closing Heights 3D state).
       updateLegend();
       return;
     }
@@ -547,28 +548,28 @@
 
   function applySweep(chapter, moveForStateChange) {
     var index = sweepIndex(chapterProgress[chapter] || 0);
-    if (chapter === "5") {
+    if (chapter === "6") {
       var epoch = CENSUS_SWEEP[index];
       setCensusEpoch(epoch);
-      var censusChip = "05 / 10 · " + EPOCHS[epoch].label;
+      var censusChip = "06 / 10 · " + EPOCHS[epoch].label;
       if (chip.textContent !== censusChip) chip.textContent = censusChip;
-    } else if (chapter === "8") {
+    } else if (chapter === "9") {
       var year = GHSL_SWEEP[index];
       setGhslStop(year);
-      var ghslChip = "08 / 10 · Built up by " + year;
+      var ghslChip = "09 / 10 · Built up by " + year;
       if (chip.textContent !== ghslChip) chip.textContent = ghslChip;
-    } else if (chapter === "9") {
+    } else if (chapter === "10") {
       if ((chapterProgress[chapter] || 0) < 0.5) {
         var leaving3d = activeMapLayer === "heights3d";
         setCensusEpoch("p_1946_80");
         setActiveLayer("census");
-        chip.textContent = "09 / 10 · 1946–1980";
+        chip.textContent = "10 / 10 · 1946–1980";
         if (leaving3d && moveForStateChange) moveCamera(CHAPTERS[chapter]);
       } else {
         var entering3d = activeMapLayer !== "heights3d";
         setActiveLayer("heights3d");
         chip.textContent =
-          "09 / 10 · Average height · 2012 · ×" + HEIGHT_EXAGGERATION;
+          "10 / 10 · Average height · 2012 · ×" + HEIGHT_EXAGGERATION;
         if (entering3d && moveForStateChange) moveCamera(CHAPTERS[chapter]);
       }
     }
@@ -577,8 +578,7 @@
   function setMapInteraction(enabled) {
     if (!heightView) return;
     var mode = "locked";
-    if (enabled && currentChapter === "10") mode = "explore";
-    if (enabled && currentChapter === "1") mode = "opening";
+    if (enabled && currentChapter === "1") mode = "opening-explore";
     heightView.setInteraction(mode);
   }
 
@@ -613,7 +613,7 @@
       pitch: pitch,
       padding: cameraPadding()
     };
-    var flatteningOpening = currentChapter === "2" && map.getPitch() > 0;
+    var flatteningOpening = currentChapter === "3" && map.getPitch() > 0;
     map.stop();
 
     if (prefersReducedMotion) {
@@ -634,10 +634,10 @@
 
   function resetExploreControls() {
     epochSelect.value = "p_1946_80";
-    var censusRadio = controls.querySelector(
-      'input[name="layer"][value="census"]'
+    var heightsRadio = controls.querySelector(
+      'input[name="layer"][value="heights3d"]'
     );
-    if (censusRadio) censusRadio.checked = true;
+    if (heightsRadio) heightsRadio.checked = true;
     activeEpoch = "p_1946_80";
     activeGhslStop = 2020;
   }
@@ -649,21 +649,21 @@
     setGround(!!state.historic);
     setRefugeeHighlight(!!state.refugees);
     setHistoricExtent(!!state.extent1894);
-    if (chapter === "5") {
+    if (chapter === "6") {
       setActiveLayer(state.layer);
-      applySweep("5");
-    } else if (chapter === "8") {
-      setActiveLayer(state.layer);
-      applySweep("8");
+      applySweep("6");
     } else if (chapter === "9") {
-      setCensusEpoch(state.epoch);
-      applySweep("9", false);
+      setActiveLayer(state.layer);
+      applySweep("9");
     } else if (chapter === "10") {
+      setCensusEpoch(state.epoch);
+      applySweep("10", false);
+    } else if (chapter === "1") {
       setCensusEpoch(epochSelect.value);
       var selectedLayer = controls.querySelector(
         'input[name="layer"]:checked'
       );
-      setActiveLayer(selectedLayer ? selectedLayer.value : "census");
+      setActiveLayer(selectedLayer ? selectedLayer.value : "heights3d");
     } else {
       var chapterLayer = prefersReducedMotion && state.reducedMotionLayer ?
         state.reducedMotionLayer : state.layer;
@@ -671,11 +671,8 @@
     }
 
     if (map) {
-      if (chapter === "10") {
+      if (chapter === "1") {
         map.setMaxBounds(MAX_BOUNDS);
-        setMapInteraction(true);
-      } else if (chapter === "1") {
-        map.setMaxBounds(null);
         setMapInteraction(true);
       } else {
         map.setMaxBounds(null);
@@ -699,9 +696,9 @@
       );
     });
     chip.textContent = state.chip;
-    chip.hidden = chapter === "10";
-    controls.hidden = chapter !== "10";
-    if (chapter === "10" && options && options.resetExplore) {
+    chip.hidden = chapter === "1";
+    controls.hidden = chapter !== "1";
+    if (chapter === "1" && options && options.resetExplore) {
       resetExploreControls();
     }
 
@@ -819,7 +816,7 @@
         interactive: false,
         attributionControl: false,
         fadeDuration: prefersReducedMotion ? 0 : 300,
-        maxBounds: currentChapter === "10" ? MAX_BOUNDS : undefined
+        maxBounds: currentChapter === "1" ? MAX_BOUNDS : undefined
       });
       map = localMap;
       heightView = window.AthensHeightView.create({
@@ -912,7 +909,7 @@
       var rect = steps[i].getBoundingClientRect();
       if (rect.top <= trigger && rect.bottom >= trigger) {
         var chapter = steps[i].getAttribute("data-chapter");
-        if (chapter === "5" || chapter === "8" || chapter === "9") {
+        if (chapter === "6" || chapter === "9" || chapter === "10") {
           chapterProgress[chapter] = Math.min(
             1,
             Math.max(0, (trigger - rect.top) / rect.height)
@@ -941,7 +938,7 @@
       .onStepProgress(function (response) {
         var chapter = response.element.getAttribute("data-chapter");
         if (
-          (chapter === "5" || chapter === "8" || chapter === "9") &&
+          (chapter === "6" || chapter === "9" || chapter === "10") &&
           currentChapter === chapter
         ) {
           chapterProgress[chapter] = response.progress;
@@ -950,8 +947,8 @@
       })
       .onStepExit(function (response) {
         if (
-          response.element.getAttribute("data-chapter") === "10" &&
-          response.direction === "up"
+          response.element.getAttribute("data-chapter") === "1" &&
+          response.direction === "down"
         ) {
           setMapInteraction(false);
         }
@@ -971,7 +968,7 @@
   }
 
   controls.addEventListener("change", function (event) {
-    if (currentChapter !== "10") return;
+    if (currentChapter !== "1") return;
     if (event.target === epochSelect) {
       setCensusEpoch(epochSelect.value);
       return;
@@ -980,6 +977,9 @@
       setActiveLayer(event.target.value);
       setMapInteraction(true);
       setExploreCameraMode(event.target.value === "heights3d");
+      if (event.target.value === "heights3d" && heightView) {
+        heightView.start();
+      }
     }
   });
 

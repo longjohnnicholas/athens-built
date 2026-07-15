@@ -1,14 +1,16 @@
 (function () {
   "use strict";
 
-  var risePlayed = false;
-  var orbitPaused = false;
-
   function create(options) {
     var map = options.map;
+    var container = map.getContainer();
     var riseFrame = null;
     var orbitFrame = null;
     var orbitLastTime = null;
+    var risePlayed = false;
+    var orbitPaused = false;
+    var interactionMode = "none";
+    var dragState = null;
     var waitingForMove = false;
     var destroyed = false;
 
@@ -30,15 +32,18 @@
 
     function setInteraction(mode) {
       var explore = mode === "explore";
-      var opening = mode === "opening" && !options.reducedMotion;
+      var opening = mode === "opening" || mode === "opening-explore";
+      var openingExplore = mode === "opening-explore";
       var allowKeyboard = explore || opening;
       var allow3d = allowKeyboard && options.is3d();
+      var allowPan = explore || (openingExplore && !allow3d);
+      interactionMode = mode;
+      if (!opening) dragState = null;
 
-      ["scrollZoom", "boxZoom", "dragPan", "doubleClickZoom"].forEach(
-        function (handlerName) {
-          setHandler(map[handlerName], explore);
-        }
-      );
+      setHandler(map.scrollZoom, explore);
+      setHandler(map.boxZoom, allowPan);
+      setHandler(map.dragPan, allowPan);
+      setHandler(map.doubleClickZoom, explore || openingExplore);
       setHandler(map.keyboard, allowKeyboard);
       if (map.keyboard) {
         if (allow3d && typeof map.keyboard.enableRotation === "function") {
@@ -63,7 +68,8 @@
           map.touchZoomRotate.disableRotation();
         }
       }
-      map.getContainer().setAttribute(
+      container.style.cursor = opening && allow3d ? "grab" : "";
+      container.setAttribute(
         "aria-disabled",
         allowKeyboard ? "false" : "true"
       );
@@ -85,7 +91,11 @@
     }
 
     function startRise() {
-      if (options.reducedMotion || risePlayed) return;
+      if (options.reducedMotion || riseFrame !== null) return;
+      if (risePlayed) {
+        startOrbit();
+        return;
+      }
       risePlayed = true;
       setHeightMultiplier(0);
       var startedAt = null;
@@ -100,12 +110,13 @@
           1,
           (timestamp - startedAt) / options.riseDuration
         );
-        var eased = 1 - Math.pow(1 - progress, 2);
+        var eased = progress * progress * (3 - 2 * progress);
         setHeightMultiplier(eased);
         if (progress < 1) {
           riseFrame = requestAnimationFrame(rise);
         } else {
           riseFrame = null;
+          startOrbit();
         }
       }
 
@@ -156,7 +167,6 @@
         return;
       }
       startRise();
-      startOrbit();
     }
 
     function leave() {
@@ -164,6 +174,9 @@
       waitingForMove = false;
       stopOrbit();
       if (risePlayed) finishRise();
+      orbitPaused = false;
+      dragState = null;
+      container.style.cursor = "";
     }
 
     function pauseOrbit() {
@@ -172,19 +185,67 @@
       stopOrbit();
     }
 
+    function beginPrimaryDrag(event) {
+      if (
+        (interactionMode !== "opening" &&
+          interactionMode !== "opening-explore") ||
+        !openingIsActive() ||
+        !options.is3d() || event.button !== 0 || event.pointerType === "touch"
+      ) return;
+      pauseOrbit();
+      dragState = {
+        bearing: map.getBearing(),
+        pitch: map.getPitch(),
+        pointerId: event.pointerId,
+        x: event.clientX,
+        y: event.clientY
+      };
+      container.style.cursor = "grabbing";
+      if (typeof container.setPointerCapture === "function") {
+        container.setPointerCapture(event.pointerId);
+      }
+      event.preventDefault();
+    }
+
+    function movePrimaryDrag(event) {
+      if (!dragState || event.pointerId !== dragState.pointerId) return;
+      var deltaX = event.clientX - dragState.x;
+      var deltaY = event.clientY - dragState.y;
+      map.setBearing(dragState.bearing + deltaX * 0.22);
+      map.setPitch(Math.max(20, Math.min(75, dragState.pitch - deltaY * 0.18)));
+      event.preventDefault();
+    }
+
+    function endPrimaryDrag(event) {
+      if (!dragState || event.pointerId !== dragState.pointerId) return;
+      dragState = null;
+      container.style.cursor =
+        interactionMode === "opening" || interactionMode === "opening-explore" ?
+          "grab" : "";
+    }
+
+    function onMapKeydown() {
+      if (
+        interactionMode === "opening" ||
+        interactionMode === "opening-explore"
+      ) pauseOrbit();
+    }
+
     function destroy() {
       leave();
       destroyed = true;
-      window.removeEventListener("pointerdown", pauseOrbit);
-      window.removeEventListener("touchstart", pauseOrbit);
-      window.removeEventListener("wheel", pauseOrbit);
-      window.removeEventListener("keydown", pauseOrbit);
+      container.removeEventListener("pointerdown", beginPrimaryDrag);
+      container.removeEventListener("pointermove", movePrimaryDrag);
+      container.removeEventListener("pointerup", endPrimaryDrag);
+      container.removeEventListener("pointercancel", endPrimaryDrag);
+      container.removeEventListener("keydown", onMapKeydown);
     }
 
-    window.addEventListener("pointerdown", pauseOrbit, { passive: true });
-    window.addEventListener("touchstart", pauseOrbit, { passive: true });
-    window.addEventListener("wheel", pauseOrbit, { passive: true });
-    window.addEventListener("keydown", pauseOrbit);
+    container.addEventListener("pointerdown", beginPrimaryDrag);
+    container.addEventListener("pointermove", movePrimaryDrag);
+    container.addEventListener("pointerup", endPrimaryDrag);
+    container.addEventListener("pointercancel", endPrimaryDrag);
+    container.addEventListener("keydown", onMapKeydown);
 
     return {
       destroy: destroy,

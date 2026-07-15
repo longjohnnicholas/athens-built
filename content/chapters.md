@@ -4,15 +4,25 @@
 
 ---
 
-## 1. The sameness
+## 1. Explore
 
-**Map state:** oblique 3D view of the 2012 Urban Atlas 150 m average-height surface at ×6 vertical exaggeration, opening across the central basin; reduced motion uses the flat 10 m height carpet.
+**Map state:** free camera, opening on the oblique 2012 Urban Atlas average-height surface at ×6 vertical exaggeration; layer switcher visible from the start; epoch dropdown active for Census only.
+
+The map is free from the start. Drag the height map to turn and tilt the basin, or use the panel to choose another layer. For census periods, each area is shaded by the share of its buildings that were standing in 2021 and date from that period. Double-clicking zooms in to today's building footprints, but none has an individual construction date because Greece publishes no building-level dates. The panel also opens the satellite growth, green-space and flat height views. The sources and methods page records what each layer can and cannot show.
+
+*Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.*
+
+## 2. The sameness
+
+**Map state:** oblique 3D view of the 2012 Urban Atlas 150 m average-height surface at ×6 vertical exaggeration, held across the central basin; reduced motion keeps the static 3D view and manual exploration but disables automatic motion.
 
 Stand on a street corner anywhere in the Athens basin and look up. The same building looks back: a concrete frame of five, six, seven storeys, balconies running the width of the facade, the top floors stepping back against the sky. Ride a bus from Patisia to Kallithea to Peristeri and the type repeats, with small variations, for an hour in any direction. Athens is among the oldest cities in Europe, and almost nothing standing in it is old. Of the buildings standing in the Municipality of Athens at the 2021 census, two in three were built between 1946 and 1980. Below, we tell the story of how a small neoclassical capital, swollen first by refugees and then by villagers, rebuilt itself block by block into the concrete city on your screen, without a master plan, with almost no bank credit, and with barely any state construction.
 
+The height is the law and the arithmetic. The sameness of the look is something else, and here the ordinary hunch is right: it was taste, and the trade. No rule said the balconies must run flat across the front, or the top floor must step back, or the frame must be left as bare concrete. That was simply the language of the age, built with the one cheap technology everyone shared and repeated by thousands of small contractors with barely an architect among them. The law made the buildings the same height; taste and the concrete made them look like siblings.
+
 *Sources: ELSTAT 2021 Buildings Census, Table 6; Karadimitriou, Maloutas & Arapoglou 2021.*
 
-## 2. A small capital, big plans (1833–1920)
+## 3. A small capital, big plans (1833–1920)
 
 **Map state:** historic ground tint with the traced 1894 built-up extent from the Baedeker Athens and Piraeus plans (after Kaupert's survey).
 
@@ -20,7 +30,7 @@ Athens became the capital of the new Greek state in 1834, when it was a town of 
 
 *Sources: Athens Social Atlas (Kleanthis–Schaubert entry); census series via Salvati 2022; Kaupert, Karten von Attika.*
 
-## 3. The city doubles in eight years (1922–28)
+## 4. The city doubles in eight years (1922–28)
 
 **Map state:** refugee settlement municipalities highlighted on the periphery (Nea Ionia, Kaisariani, Vyronas, and Nikaia, which includes historic Nea Kokkinia).
 
@@ -28,7 +38,7 @@ In 1922 the Greek army was defeated in Asia Minor, and in the forced population 
 
 *Sources: Kapokakis, Kritikos & Anastasiadou 2023; Athens Social Atlas (refugee settlement entries); Leontidou 1990.*
 
-## 4. The prototype (1929–40)
+## 5. The prototype (1929–40)
 
 **Map state:** center camera over interwar Athens; annotated section diagram of the polykatoikia beside the text.
 
@@ -36,15 +46,19 @@ In January 1929 Greece passed a law that let a person own a floor of a building 
 
 *Sources: Law 3741/1929 (ΦΕΚ Α΄4); Aureli, Giudici & Issaias 2012; Kalfa 2023; CoHab Athens; Marmaras 1991 (via CoHab Athens).*
 
-## 5. The machine (1950–80)
+## 6. The machine (1950–80)
 
 **Map state:** animated antiparochi diagram (plot → contractor → flats in kind); epoch layer sweeps 1946–60 → 1961–70 → 1971–80.
 
-After 1950, Athens rebuilt itself through a deal struck plot by plot. The arrangement was called antiparochi, roughly "in exchange." A landowner signed a plot over to a small contractor, who built an apartment block at their own risk and paid the owner in kind, with an agreed share of the finished flats, keeping the rest to sell. No standard split existed; every deal was negotiated. Because the owner was paid in apartments rather than cash, the transfer escaped the taxes a sale would have triggered, and because presales of the flats financed the works, banks stayed marginal throughout. Alongside antiparochi ran family self-building, dominant on the periphery, often ahead of the official plans and legalized afterward by repeated amnesties. The building code then made their output identical. The 1955 code fixed the same envelope for every street-wall plot. It let a building cover 70 percent of its ground, and it read the permitted storeys off the width of the road outside; a street of eight meters allowed three storeys, a street of sixteen allowed six, and the same stepped crown was required on top. Similar plots on similar streets were legally good for the same building, and when the junta raised the allowances in 1968 it did so everywhere at once, mostly as extra recessed floors. The deal and the code together transformed the city. Around 1950 Athens had fewer than a thousand buildings of five storeys or more; by 1980 it had about 35,000. The builders were not corporations: in an archival sample of building permits, 940 separate construction firms appear, averaging 1.3 buildings each. One number in the folklore needs correcting before we go on. It is often said that 90 percent of Athens was built through antiparochi, and that figure traces to no dataset; the best archival estimate we have found attributes about 45 percent of apartment permits from 1955 to 1970 to antiparochi, explicitly as a lower bound, with self-building accounting for much of the rest. As the map sweeps across the postwar decades, the census is counting what those channels left standing. Of the buildings standing in Greece today, nearly half date from 1946 to 1980; in the Municipality of Athens, two in three.
+After 1950, Athens rebuilt itself through a deal struck plot by plot. The arrangement was called antiparochi, roughly "in exchange." A landowner signed a plot over to a small contractor, who built an apartment block at their own risk and paid the owner in kind, with an agreed share of the finished flats, keeping the rest to sell. No standard split existed; every deal was negotiated. Because the owner was paid in apartments rather than cash, the transfer escaped the taxes a sale would have triggered, and because presales of the flats financed the works, banks stayed marginal throughout. Alongside antiparochi ran family self-building, dominant on the periphery, often ahead of the official plans and legalized afterward by repeated amnesties. The building code then made their output identical. The 1955 code fixed the same envelope for every street-wall plot. It let a building cover 70 percent of its ground, and it read the permitted storeys off the width of the road outside; a street of eight meters allowed three storeys, a street of sixteen allowed six, and the same stepped crown was required on top.
+
+The rule never measured every street and handed each one its own height. It sorted streets into a few broad bands, set a ceiling for each, and in the crowded core set one ceiling for almost everyone — so the same height never needed the same street, only a street wide enough to reach the same rung. And because antiparochi paid the landowner and the builder alike in finished flats, both wanted every centimetre the ceiling allowed. A limit that comes in a few coarse steps, and a reason for everyone to touch it, is enough to level a whole basin to one height.
+
+When the junta raised the allowances in 1968 it did so everywhere at once, mostly as extra recessed floors. The deal and the code together transformed the city. Around 1950 Athens had fewer than a thousand buildings of five storeys or more; by 1980 it had about 35,000. The builders were not corporations: in an archival sample of building permits, 940 separate construction firms appear, averaging 1.3 buildings each. One number in the folklore needs correcting before we go on. It is often said that 90 percent of Athens was built through antiparochi, and that figure traces to no dataset; the best archival estimate we have found attributes about 45 percent of apartment permits from 1955 to 1970 to antiparochi, explicitly as a lower bound, with self-building accounting for much of the rest. As the map sweeps across the postwar decades, the census is counting what those channels left standing. Of the buildings standing in Greece today, nearly half date from 1946 to 1980; in the Municipality of Athens, two in three.
 
 *Sources: CoHab Athens ("Land for Flat"); Kalfa 2023; ELSTAT 2011 & 2021 Buildings Censuses; Karadimitriou, Maloutas & Arapoglou 2021; GOK 1955 (RD 9/30.8.1955, arts. 16 & 29); EL 395/1968.*
 
-## 6. What it replaced
+## 7. What it replaced
 
 **Map state:** tight camera over the historic core; no Plaka polygon is drawn because no suitable geometry is available.
 
@@ -52,7 +66,7 @@ The boom did not only fill empty land. In the center it replaced a city that was
 
 *Sources: Karatzas 2024; Athens Social Atlas (Plaka entry); Kalfa 2023.*
 
-## 7. Where the parks went
+## 8. Where the parks went
 
 **Map state:** Urban Atlas 2018 Green urban areas, with the Street Tree Layer as supporting texture.
 
@@ -60,7 +74,7 @@ The mechanism that rebuilt the housing also explains the missing parks. From the
 
 *Sources: JRC / Nature Communications 2026 (3-30-300 study); EEA tree-cover data; Athens Social Atlas (Kleanthis–Schaubert entry).*
 
-## 8. The edges (1980–2008)
+## 9. The edges (1980–2008)
 
 **Map state:** GHSL cumulative built-up land sweeps 1990 → 2005 → 2020; camera widens to Mesogeia.
 
@@ -68,7 +82,7 @@ By 1980 the basin was filling up and growth moved to the edges. The satellite re
 
 *Sources: Copernicus GHSL R2023; Rontos et al. 2024; Karadimitriou, Maloutas & Arapoglou 2021; Beriatos & Gospodini 2004.*
 
-## 9. The verdict
+## 10. The verdict
 
 **Map state:** return to the opening camera; first half shows the 1946–1980 community choropleth, second half the 2012 building-height carpet.
 
@@ -77,14 +91,6 @@ This is the view we opened with, now with the construction dates showing. The sa
     2 in 3 — of the buildings in the Municipality of Athens with three or more upper floors were built between 1946 and 1980. ELSTAT 2021 Buildings Census, Table 07A.
 
 *Sources: Allen, Barlow, Leal, Maloutas & Padovani 2004; Emmanuel 2015; Housing Europe 2025 / Eurostat; ELSTAT 2021 Buildings Census.*
-
-## 10. Explore
-
-**Map state:** free camera; epoch dropdown active for Census only; layer switcher (Census, Heights, Satellite, Green, Footprints only).
-
-The map is now free. Choose a construction period from the dropdown and each area shades by the share of its standing buildings dating from that period. The denominator never changes. Colors always show shares of the buildings counted standing at the 2021 census, so what you see is what survives, not everything ever built. Zoom in and today's building footprints appear above the colors; none of them carries an individual date, because Greece publishes no per-building construction year. The satellite growth, green-space and building-height layers switch on from the panel, each labelled with its date and limits. We document every number in the text and every layer on the map, with what each layer can and cannot say, on the sources and methods page linked below.
-
-*Sources: ELSTAT 2021 Buildings Census, Table 6; OpenStreetMap contributors; Copernicus GHSL.*
 
 ---
 
